@@ -103,11 +103,125 @@ svg:hover #toy {
 
 .setting__block-color {
   display: flex;
+  justify-content:space-between;
   input[type='checkbox'] {
     width: 20px;
     height: 20px;
+    //display: none;
   }
-  .checkbox__color-yellow{
-    background-color:red
-  }
+}
+#checkbox-white{
+  display: none;
+}
+#checkbox-white + label{
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: rgb(218, 218, 218);
+  border: 1px solid rgb(255, 255, 255); 
+  border-radius:5px;   
+  text-align: center;    
+}
+#checkbox-white + label:before{
+  content: '✔';
+  font-size: 20px;
+  
+}
+
+#checkbox-white:checked + label:before{
+  color: rgb(1, 255, 1);
+}
+
+
+
+
+
+
+#checkbox-yellow{
+  display: none;
+}
+#checkbox-yellow + label{
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: rgb(196, 209, 11);
+  border: 1px solid rgb(255, 255, 255); 
+  border-radius:5px;   
+  text-align: center;    
+}
+#checkbox-yellow + label:before{
+  content: '✔';
+  font-size: 20px;
+}
+
+#checkbox-yellow:checked + label:before{
+  color: rgb(1, 255, 1);
+}
+
+
+
+#checkbox-red{
+  display: none;
+}
+#checkbox-red + label{
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: rgb(209, 11, 11);
+  border: 1px solid rgb(255, 255, 255); 
+  border-radius:5px;   
+  text-align: center;    
+}
+#checkbox-red + label:before{
+  content: '✔';
+  font-size: 20px;
+}
+
+#checkbox-red:checked + label:before{
+  color: rgb(1, 255, 1);
+}
+
+
+#checkbox-blue{
+  display: none;
+}
+#checkbox-blue + label{
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: rgb(11, 24, 209);
+  border: 1px solid rgb(255, 255, 255); 
+  border-radius:5px;   
+  text-align: center;    
+}
+#checkbox-blue + label:before{
+  content: '✔';
+  font-size: 20px;
+}
+
+#checkbox-blue:checked + label:before{
+  color: rgb(1, 255, 1);
+}
+
+
+#checkbox-green{
+  display: none;
+}
+#checkbox-green + label{
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: rgb(45, 131, 5);
+  border: 1px solid rgb(30, 135, 153); 
+  border-radius:5px;   
+  text-align: center;    
+}
+#checkbox-green + label:before{
+  content: '✔';
+  font-size: 20px;
+}
+
+#checkbox-green:checked + label:before{
+  color: rgb(1, 255, 1);
+
 }

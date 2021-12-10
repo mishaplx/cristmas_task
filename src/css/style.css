@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url(./normalize.css);
 html {
   height: 100%;
@@ -157,6 +158,9 @@ svg:hover #toy {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .setting__block-color input[type='checkbox'] {
@@ -164,7 +168,118 @@ svg:hover #toy {
   height: 20px;
 }
 
-.setting__block-color .checkbox__color-yellow {
-  background-color: red;
+#checkbox-white {
+  display: none;
+}
+
+#checkbox-white + label {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: #dadada;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#checkbox-white + label:before {
+  content: '✔';
+  font-size: 20px;
+}
+
+#checkbox-white:checked + label:before {
+  color: #01ff01;
+}
+
+#checkbox-yellow {
+  display: none;
+}
+
+#checkbox-yellow + label {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: #c4d10b;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#checkbox-yellow + label:before {
+  content: '✔';
+  font-size: 20px;
+}
+
+#checkbox-yellow:checked + label:before {
+  color: #01ff01;
+}
+
+#checkbox-red {
+  display: none;
+}
+
+#checkbox-red + label {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: #d10b0b;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#checkbox-red + label:before {
+  content: '✔';
+  font-size: 20px;
+}
+
+#checkbox-red:checked + label:before {
+  color: #01ff01;
+}
+
+#checkbox-blue {
+  display: none;
+}
+
+#checkbox-blue + label {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: #0b18d1;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#checkbox-blue + label:before {
+  content: '✔';
+  font-size: 20px;
+}
+
+#checkbox-blue:checked + label:before {
+  color: #01ff01;
+}
+
+#checkbox-green {
+  display: none;
+}
+
+#checkbox-green + label {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: #2d8305;
+  border: 1px solid #1e8799;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#checkbox-green + label:before {
+  content: '✔';
+  font-size: 20px;
+}
+
+#checkbox-green:checked + label:before {
+  color: #01ff01;
 }
 /*# sourceMappingURL=style.css.map */
