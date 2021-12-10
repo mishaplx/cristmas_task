@@ -3,6 +3,10 @@ html {
   height: 100%;
 }
 
+p {
+  margin: 0px;
+}
+
 body {
   color: white;
   background: url(./bg.jpg);
@@ -51,7 +55,8 @@ body {
   cursor: pointer;
 }
 
-.toys:hover, .tree:hover {
+.toys:hover,
+.tree:hover {
   text-decoration: underline;
 }
 
@@ -98,15 +103,54 @@ body {
   border-radius: 5px;
 }
 
-input[type=checkbox] {
-  width: 20px;
-  height: 20px;
+.setting__block .title {
+  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
-.setting__block-forma {
+.setting__block .setting__block-forma {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 10px;
+}
+
+.setting__block .setting__block-forma .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.setting__block .setting__block-forma * {
+  margin-right: 5px;
+}
+
+svg:hover #bell {
+  fill: #6d8115;
+}
+
+svg:hover #ball {
+  fill: #6d8115;
+}
+
+svg:hover #cone {
+  fill: #6d8115;
+}
+
+svg:hover #snow {
+  fill: #6d8115;
+}
+
+svg:hover #toy {
+  fill: #6d8115;
 }
 
 .setting__block-color {
@@ -115,7 +159,12 @@ input[type=checkbox] {
   display: flex;
 }
 
-.checkbox__color-yellow:disabled {
-  background: yellow;
+.setting__block-color input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+}
+
+.setting__block-color .checkbox__color-yellow {
+  background-color: red;
 }
 /*# sourceMappingURL=style.css.map */

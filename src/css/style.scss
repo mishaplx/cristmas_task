@@ -3,6 +3,9 @@
 html {
   height: 100%;
 }
+p {
+  margin: 0px;
+}
 body {
   color: white;
   background: url(./bg.jpg);
@@ -30,14 +33,15 @@ body {
   display: flex;
   text-transform: uppercase;
 }
-.tree{
+.tree {
   cursor: pointer;
 }
 .toys {
   margin: 0px 10px;
   cursor: pointer;
 }
-.toys:hover, .tree:hover {
+.toys:hover,
+.tree:hover {
   text-decoration: underline;
 }
 .inp_search {
@@ -54,27 +58,56 @@ body {
 .inp_search::placeholder {
   color: white;
 }
-.setting{
+.setting {
   display: flex;
   justify-content: space-between;
 }
-.setting__block{
+.setting__block {
   padding: 10px;
   background: rgba(25, 194, 180, 0.5);
   border-radius: 5px;
+  .title {
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
+  .setting__block-forma {
+    display: flex;
+    margin-bottom: 10px;
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+     
+    }
+  }
+  .setting__block-forma * {
+    margin-right: 5px;
+  }
+}
+svg:hover #bell {
+  fill: rgb(109, 129, 21);
+}
+svg:hover #ball {
+  fill: rgb(109, 129, 21);
+}
+svg:hover #cone {
+  fill: rgb(109, 129, 21);
+}
+svg:hover #snow {
+  fill: rgb(109, 129, 21);
+}
+svg:hover #toy {
+  fill: rgb(109, 129, 21);
+}
 
-}
-input[type=checkbox]{
-  width: 20px;
-  height: 20px;
-}
-.setting__block-forma{
+.setting__block-color {
   display: flex;
-}
-.setting__block-color{
-  display: flex;
-
-}
-.checkbox__color-yellow:disabled {
-  background: yellow;
+  input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+  }
+  .checkbox__color-yellow{
+    background-color:red
+  }
 }
