@@ -131,7 +131,10 @@ svg:hover #toy {
 #checkbox-white:checked + label:before{
   color: rgb(1, 255, 1);
 }
-
+.setting__block-size{
+  display: flex;
+  align-items: center;
+}
 
 
 
