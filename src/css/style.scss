@@ -228,3 +228,50 @@ svg:hover #toy {
   color: rgb(1, 255, 1);
 
 }
+.setting__block-forever{
+  display: flex;
+}
+
+#checkbox-blue{
+  display: none;
+}
+#checkbox-blue + label{
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: rgb(11, 24, 209);
+  border: 1px solid rgb(255, 255, 255); 
+  border-radius:5px;   
+  text-align: center;    
+}
+#checkbox-blue + label:before{
+  content: '✔';
+  font-size: 20px;
+}
+
+#checkbox-blue:checked + label:before{
+  color: rgb(1, 255, 1);
+}
+
+
+#checkbox-forever{
+  display: none;
+}
+#checkbox-forever + label{
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: rgb(128, 128, 128);
+  border: 1px solid rgb(43, 133, 63); 
+  border-radius:5px;   
+  text-align: center;    
+}
+#checkbox-forever + label:before{
+  content: '✔';
+  font-size: 20px;
+}
+
+#checkbox-forever:checked + label:before{
+  color: rgb(1, 255, 1);
+
+}
