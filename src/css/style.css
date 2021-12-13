@@ -137,6 +137,7 @@ body {
 
 .setting {
   border: 1px solid #000;
+  padding: 0px 20px;
 }
 
 .setting * {
@@ -193,6 +194,19 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.setting-block-sorting select {
+  background: radial-gradient(118.88% 606.86% at 0% 0%, rgba(255, 255, 255, 0.2) 0%, rgba(157, 243, 255, 0.2) 100%);
+  -webkit-backdrop-filter: blur(31px);
+          backdrop-filter: blur(31px);
+  /* Note: backdrop-filter has minimal browser support */
+  color: white;
+  border-radius: 30px;
+}
+
+.setting-block-sorting select option {
+  color: black;
 }
 
 .setting-button {
