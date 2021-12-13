@@ -1,13 +1,28 @@
-import noUiSlider from 'nouislider';
 export default function slider() {
-  var slider = document.getElementById('slider');
+  const slider = document.getElementById('slider-for-copy');
 
   noUiSlider.create(slider, {
-    start: [20, 80],
-    connect: true,
+    start: [1900, 2021],
+    step: 1,
     range: {
-      min: 0,
-      max: 100,
+      min: 1900,
+      max: 2021,
     },
+    
+    
+  });
+  
+  
+  const slider1 = document.getElementById('slider-for-years');
+
+  noUiSlider.create(slider1, {
+    start: [1900, 2021],
+    step: 1,
+    range: {
+      min: 1900,
+      max: 2021,
+    },
+    
+    
   });
 }
