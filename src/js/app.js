@@ -1,6 +1,9 @@
 import data from './data.js';
+import Search from './search.js';
+
 export default class App {
   constructor() {
+    this.search = new Search(data);
     this.buttonStart = document.querySelector('.button-start');
     this.mainTitle = document.querySelector('.main-title');
     this.wrapperBlock = document.querySelector('.wrapper');
@@ -21,10 +24,22 @@ export default class App {
     });
   }
   showAll() {
+    //let x = data.filter((el)=>{
+     // return el.color === 'желтый'
+    //})
+    //console.log(x);
     for (let i = 0; i < data.length; i++) {
-      this.drawBlock(data[i].name, data[i].count, data[i].num, data[i].year, data[i].shape ,data[i].color, data[i].size, data[i].favorite);
+      this.drawBlock(
+        data[i].name,
+        data[i].count,
+        data[i].num,
+        data[i].year,
+        data[i].shape,
+        data[i].color,
+        data[i].size,
+        data[i].favorite
+      );
     }
-    console.log(data);
   }
 
   drawBlock(name, count, num, year, shape, color, size, favorite) {
@@ -36,7 +51,7 @@ export default class App {
     nameBlock.innerHTML = name;
     const imgBlock = document.createElement('img');
     imgBlock.className = 'img';
-    
+
     imgBlock.src = `./assets/toys/${num}.png`;
 
     const countBlock = document.createElement('div');
@@ -48,22 +63,21 @@ export default class App {
 
     const formBlock = document.createElement('div');
     formBlock.className = 'form';
-    formBlock.innerHTML = `форма игрушки: ${shape}`
+    formBlock.innerHTML = `форма игрушки: ${shape}`;
 
     const colorBlock = document.createElement('div');
     colorBlock.className = 'color';
-    colorBlock.innerHTML = `Цвет игрушки ${color}`
+    colorBlock.innerHTML = `Цвет игрушки ${color}`;
     const sizeBlock = document.createElement('div');
     sizeBlock.className = 'size';
-    sizeBlock.innerHTML = `Размер игрушки ${size}`
+    sizeBlock.innerHTML = `Размер игрушки ${size}`;
 
     const favoriteBlock = document.createElement('div');
     favoriteBlock.className = 'favorite';
-    if (favorite){
-      favoriteBlock.innerHTML = 'Да'
-    }
-    else{
-      favoriteBlock.innerHTML = 'Нет'
+    if (favorite) {
+      favoriteBlock.innerHTML = 'Да';
+    } else {
+      favoriteBlock.innerHTML = 'Нет';
     }
     block.appendChild(nameBlock);
     block.appendChild(imgBlock);
@@ -74,5 +88,16 @@ export default class App {
     block.appendChild(favoriteBlock);
 
     this.mainBlock.appendChild(block);
+  }
+
+  search() {}
+
+  searchForm() {}
+  searchCopy() {}
+  searchYear() {}
+  searchColor() {}
+  searchSize() {}
+  searchFavorite(){
+
   }
 }
