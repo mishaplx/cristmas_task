@@ -1,4 +1,4 @@
-import { Idata } from './interfaces/interfaces';
+import { Idata } from '../interfaces/interfaces';
 const data: Idata[] = [
   {
     num: '1',
