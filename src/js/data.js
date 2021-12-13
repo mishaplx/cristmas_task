@@ -1,5 +1,5 @@
-import { Idata } from '../interfaces/interfaces';
-const data: Idata[] = [
+//import { Idata } from '../interfaces/interfaces';
+const data= [
   {
     num: '1',
     name: 'Большой шар с рисунком',

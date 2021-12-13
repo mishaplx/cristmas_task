@@ -1,6 +1,6 @@
 //import './css/style.scss';
 import slider from './js/slider.js';
-import App from './js/app.js' 
+import App from './js/app.js';
 slider();
-const app = new App()
-app.start()
+const app = new App();
+app.start();
