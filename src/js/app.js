@@ -10,6 +10,14 @@ export default class App {
     this.containerBlock = document.querySelector('.container');
     this.footerBlock = document.querySelector('.footer');
     this.mainBlock = document.querySelector('.main');
+    this.search = document.querySelector('.inp_search');
+
+    this.search.value = '';
+    this.search.focus;
+    this.search.select;
+    this.search.addEventListener('input', () => {
+      this.check(this.search.value);
+    });
   }
   start() {
     this.buttonStart.addEventListener('click', () => {
@@ -20,12 +28,12 @@ export default class App {
       this.wrapperBlock.style.display = 'flex';
       this.containerBlock.style.backgroundColor = '#192f2d';
       this.footerBlock.style.display = 'none';
-      this.showAll();
+      this.showAll(data);
     });
   }
-  showAll() {
+  showAll(data) {
     //let x = data.filter((el)=>{
-     // return el.color === 'желтый'
+    // return el.color === 'желтый'
     //})
     //console.log(x);
     for (let i = 0; i < data.length; i++) {
@@ -41,7 +49,9 @@ export default class App {
       );
     }
   }
-
+  cleanMain() {
+    this.mainBlock.innerHTML = '';
+  }
   drawBlock(name, count, num, year, shape, color, size, favorite) {
     const block = document.createElement('div');
     block.className = 'block';
@@ -89,15 +99,30 @@ export default class App {
 
     this.mainBlock.appendChild(block);
   }
-
-  search() {}
-
-  searchForm() {}
-  searchCopy() {}
-  searchYear() {}
-  searchColor() {}
-  searchSize() {}
-  searchFavorite(){
-
+  check(value) {
+    this.cleanMain();
+    for (let i = 0; i < data.length; i++) {
+      let name = data[i].name.toLocaleLowerCase();
+      //debugger
+      if (name.indexOf(value) != -1) {
+        this.drawBlock(
+          data[i].name,
+          data[i].count,
+          data[i].num,
+          data[i].year,
+          data[i].shape,
+          data[i].color,
+          data[i].size,
+          data[i].favorite
+        );
+      }
+    }
   }
+
+  // searchForm() {}
+  // searchCopy() {}
+  // searchYear() {}
+  // searchColor() {}
+  // searchSize() {}
+  // searchFavorite(){ }
 }

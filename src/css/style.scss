@@ -1,4 +1,5 @@
 @import url(./normalize.css);
+@import url(./nouislider.min.css);
 .hide {
   display: none;
 }
@@ -19,6 +20,31 @@ body {
   margin: 0px;
   font-family: 'Neucha', cursive;
 }
+.noUi-connects {
+  background: #24c5db;
+}
+.noUi-horizontal .noUi-handle {
+  box-shadow: none;
+  border: 1px solid #000;
+  border-radius: 100%;
+  top: -12px !important;
+  width: 30px !important;
+  height: 30px !important;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    radial-gradient(57.23% 248.2% at 107.17% 104.02%, rgba(34, 153, 235, 0.92) 0%, rgba(34, 153, 235, 0.07) 100%),
+    radial-gradient(104.22% 230.94% at -4.22% 0%, #24c5db 3.62%, rgba(36, 197, 219, 0.26) 55.1%);
+}
+.noUi-horizontal .noUi-handle::after{
+  display: none;
+} 
+.noUi-horizontal .noUi-handle::before{
+  display: none;
+} 
+#slider-for-copy,
+#slider-for-years {
+  height: 5px;
+}
+
 .container {
   width: 100%;
   height: 100%;
@@ -50,7 +76,6 @@ body {
 }
 .wrapper {
   padding: 0px 20px;
-
 }
 .header {
   background: #192f2d;
@@ -169,7 +194,9 @@ svg:hover #toy {
 svg:hover #star {
   fill: rgb(109, 129, 21);
 }
-
+.noUi-background {
+  background-color: #000;
+}
 .setting__block-color {
   display: flex;
   justify-content: space-between;
@@ -417,7 +444,6 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  
 }
 main * {
   margin: 5px;
@@ -434,4 +460,7 @@ main * {
   /* Note: backdrop-filter has minimal browser support */
 
   border-radius: 10px;
+}
+.setting__block-copy {
+  margin-bottom: 60px;
 }

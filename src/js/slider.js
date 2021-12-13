@@ -2,13 +2,21 @@ export default function slider() {
   const slider = document.getElementById('slider-for-copy');
 
   noUiSlider.create(slider, {
-    start: [1900, 2021],
+    start: [1, 20],
     step: 1,
+    tooltips:true,
     range: {
-      min: 1900,
-      max: 2021,
+      min: 1,
+      max: 20,
     },
-    
+    format: {
+      to: function (value) {
+          return parseInt(value);
+      },
+      from: function (value) {
+          return parseInt(value);
+      }
+  }
     
   });
   
@@ -18,11 +26,19 @@ export default function slider() {
   noUiSlider.create(slider1, {
     start: [1900, 2021],
     step: 1,
+    tooltips:true,
     range: {
       min: 1900,
       max: 2021,
     },
-    
+    format: {
+      to: function (value) {
+          return parseInt(value);
+      },
+      from: function (value) {
+          return parseInt(value);
+      }
+  }
     
   });
 }

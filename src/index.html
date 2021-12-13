@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet" />
-    <link href="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.min.css" rel="stylesheet" />
-    <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
+    <script src="./js/nouislider.min.js"></script>
+    <link rel="stylesheet" href="./css/nouislider.min.css">
     <title>Cristmas</title>
   </head>
   <body>
@@ -18,23 +18,25 @@
       <div class="wrapper hide">
         <div class="setting">
           <div class="setting__block-search">
-            <img src="./assets/svg/mute.svg" alt="mute" width="40px" height="40px">
-            <img src="./assets/svg/snow.svg" alt="snow"width="40px" height="40px">
-            <input type="text" class="inp_search" placeholder="ПОИСК">
+            <img src="./assets/svg/mute.svg" alt="mute" width="40px" height="40px" />
+            <img src="./assets/svg/snow.svg" alt="snow" width="40px" height="40px" />
+            
+            <input type="search" class="inp_search" placeholder="ПОИСК" />
           </div>
           <div class="setting-block-sorting">
             <div class="title_sorting">Сортировать:</div>
-            <select name="select"> <!--Supplement an id here instead of using 'name'-->
+            <select name="select">
+              <!--Supplement an id here instead of using 'name'-->
               <option value="value1">по названию в возрастающем порядке</option>
               <option value="value2" selected>по названию в спадающем порядке</option>
-              <option value="value3">по году их приобретения в возрастающемпорядке </option>
-              <option value="value3">по году их приобретения в спадающем порядке </option>
+              <option value="value3">по году их приобретения в возрастающемпорядке</option>
+              <option value="value3">по году их приобретения в спадающем порядке</option>
             </select>
           </div>
           <div class="setting-block-category">
             <div class="title_category">Категории:</div>
-           <input type="checkbox" name="category" id="category">
-           <span class="all">Все</span>
+            <input type="checkbox" name="category" id="category" />
+            <span class="all">Все</span>
           </div>
           <div class="setting__block">
             <p class="title">ФИЛЬТР ПО НАЗНАЧЕНИЮ</p>
@@ -95,8 +97,12 @@
               <div class="form-star form">
                 <div class="start">
                   <svg width="40" height="40" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path id="star" d="M42 17.1098C42 14.9538 40.4254 13.1679 38.3622 12.8306C38.3583 12.8253 38.3521 12.8205 38.3473 12.8188L29.1537 11.5806L25.1234 3.41381C24.4969 1.78369 22.9219 0.623001 21.0704 0.623001C19.152 0.623001 17.5258 1.86725 16.9518 3.59319L13.0839 11.5806L4.088 12.7689C4.08713 12.7741 4.08582 12.7811 4.0845 12.7864C1.87075 12.9889 0.137817 14.8474 0.137817 17.1102C0.137817 18.5382 0.828192 19.7999 1.89 20.5944L8.11913 26.8656L6.60494 35.1816C6.60975 35.1842 6.61413 35.1864 6.61938 35.1886C6.45269 35.6501 6.35775 36.1427 6.35775 36.6599C6.35775 39.0591 8.30244 41.0043 10.7034 41.0043C11.515 41.0043 12.2741 40.7781 12.9268 40.3878L21.119 36.3108L28.9905 40.2526C29.6879 40.7282 30.5301 41.0047 31.4374 41.0047C33.8358 41.0047 35.7805 39.06 35.7805 36.6603C35.7805 36.5352 35.7713 36.4092 35.7604 36.2832C35.7687 36.2788 35.7726 36.274 35.7805 36.267L34.1202 26.8664L40.5182 20.4199C40.5178 20.4142 40.509 20.4028 40.5011 20.3901C41.4173 19.5926 42 18.4214 42 17.1098Z" fill="white"/>
-                    </svg>
+                    <path
+                      id="star"
+                      d="M42 17.1098C42 14.9538 40.4254 13.1679 38.3622 12.8306C38.3583 12.8253 38.3521 12.8205 38.3473 12.8188L29.1537 11.5806L25.1234 3.41381C24.4969 1.78369 22.9219 0.623001 21.0704 0.623001C19.152 0.623001 17.5258 1.86725 16.9518 3.59319L13.0839 11.5806L4.088 12.7689C4.08713 12.7741 4.08582 12.7811 4.0845 12.7864C1.87075 12.9889 0.137817 14.8474 0.137817 17.1102C0.137817 18.5382 0.828192 19.7999 1.89 20.5944L8.11913 26.8656L6.60494 35.1816C6.60975 35.1842 6.61413 35.1864 6.61938 35.1886C6.45269 35.6501 6.35775 36.1427 6.35775 36.6599C6.35775 39.0591 8.30244 41.0043 10.7034 41.0043C11.515 41.0043 12.2741 40.7781 12.9268 40.3878L21.119 36.3108L28.9905 40.2526C29.6879 40.7282 30.5301 41.0047 31.4374 41.0047C33.8358 41.0047 35.7805 39.06 35.7805 36.6603C35.7805 36.5352 35.7713 36.4092 35.7604 36.2832C35.7687 36.2788 35.7726 36.274 35.7805 36.267L34.1202 26.8664L40.5182 20.4199C40.5178 20.4142 40.509 20.4028 40.5011 20.3901C41.4173 19.5926 42 18.4214 42 17.1098Z"
+                      fill="white"
+                    />
+                  </svg>
                 </div>
                 <p class="snow-name">звезда</p>
               </div>
@@ -179,7 +185,6 @@
             </div>
           </div>
           <div class="setting__block-copy">
-
             <div class="sub__title">Количество экземпляров</div>
             <div id="slider-for-copy"></div>
           </div>
@@ -189,7 +194,6 @@
           </div>
           <div class="setting__block-color">
             <div class="title">Цвет:</div>
-
             <input type="checkbox" id="checkbox-white" />
             <label for="checkbox-white"></label>
 
@@ -209,12 +213,14 @@
             <div class="button-apply">Применить</div>
             <div class="button-reset">Сброс настроек</div>
           </div>
-        
         </div>
-  
+
         <main class="main"></main>
       </div>
-      <div class="main-title">ПОМОГИТЕ БАБУШКЕ <br> НАРЯДИТЬ ЁЛКУ</div>
+      <div class="main-title">
+        ПОМОГИТЕ БАБУШКЕ <br />
+        НАРЯДИТЬ ЁЛКУ
+      </div>
       <div class="button-start">Начать</div>
       <footer class="footer">
         <p class="title">Работу выполнил: Плехневич Михаил</p>
@@ -226,7 +232,7 @@
         </div>
       </footer>
     </div>
-    
+
     <script type="module" src="./index.js"></script>
   </body>
 </html>
