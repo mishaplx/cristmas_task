@@ -13,15 +13,14 @@ export default class App {
     this.search = document.querySelector('.inp_search');
     this.categoryCheckBox = document.getElementById('category');
     this.foreverCheckBox = document.getElementById('checkbox-forever');
-    this.favoriteBlock = document.querySelector('.favorite');
-    this.checkCount = 0;
-
+    this.countFavorites = document.querySelector('.count-favorites');
+    this.countFavorites.innerHTML = this.searchFavorite(data).length
     this.categoryCheckBox.addEventListener('input', () => {
       this.cleanMain();
       this.showAll(data);
       this.search.value = '';
     });
-    this.countForforeverCheckBox = 0;
+
     this.foreverCheckBox.addEventListener('input', () => {
       if (this.foreverCheckBox.checked) {
         let arrObjGlobal = this.getObj();
@@ -40,9 +39,8 @@ export default class App {
           );
         }
       } else if (!this.foreverCheckBox.checked) {
-        this.countForforeverCheckBox = 0;
         this.cleanMain();
-        for (let i = 0; i < arrObj.length; i++) {
+        for (let i = 0; i < arrObjGlobal.length; i++) {
           this.drawBlock(
             arrObj[i].name,
             arrObj[i].count,
@@ -121,11 +119,30 @@ export default class App {
 
     const favoriteBlock = document.createElement('div');
     favoriteBlock.className = 'favorite';
+    favoriteBlock.addEventListener('click', () => {
+      if (favoriteBlock.innerHTML == 'Нет') {
+        favoriteBlock.innerHTML = 'Да';
+        this.countFavorites.innerHTML = Number(this.countFavorites.innerHTML) + 1 
+        if (Number(this.countFavorites.innerHTML) >20){
+          alert('больше 20-и игрушек нельзя добавлять в избранное')
+          favoriteBlock.innerHTML = 'Нет';
+          this.countFavorites.innerHTML = Number(this.countFavorites.innerHTML) - 1 
+          favoriteBlock.classList.toggle('favorite-active');
+        }
+      } else if (favoriteBlock.innerHTML == 'Да') {
+        favoriteBlock.innerHTML = 'Нет';
+        this.countFavorites.innerHTML = Number(this.countFavorites.innerHTML) - 1 
+      }
+      favoriteBlock.classList.toggle('favorite-active');
+      
+    });
     if (favorite) {
       favoriteBlock.innerHTML = 'Да';
       favoriteBlock.classList.toggle('favorite-active');
+      
     } else {
       favoriteBlock.innerHTML = 'Нет';
+      
     }
     block.appendChild(nameBlock);
     block.appendChild(imgBlock);
