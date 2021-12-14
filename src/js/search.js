@@ -2,34 +2,51 @@ export default class Search {
   constructor(data) {
     this.globalState = data;
     this.mainBlock = document.querySelector('.main');
+    console.log(this.mainBlock.children);
     this.search = document.querySelector('.inp_search');
     //this.categoryCheckBox = document.getElementById('category');
     this.foreverCheckBox = document.getElementById('checkbox-forever');
     this.countFavorites = document.querySelector('.count-favorites');
     this.settingBlock = document.querySelector('.setting');
-    
+
     this.settingBlock.addEventListener('click', (event) => {
-      console.log(event.target.id);
       if (event.target.id == 'bell') {
-        this.changeColorSvg(document.getElementById(event.target.id));
+        if (this.changeColorSvg(document.getElementById(event.target.id))) {
+          this.searchForm('колокольчик', this.mainBlock.children, true);
+        } else {
+          this.searchForm('колокольчик', this.mainBlock.children, false);
+        }
       }
       if (event.target.id == 'ball') {
-        this.changeColorSvg(document.getElementById(event.target.id));
+        if (this.changeColorSvg(document.getElementById(event.target.id))) {
+          this.searchForm('шар', this.block, true);
+        } else {
+          this.searchForm('шар', this.block, false);
+        }
       }
+
       if (event.target.id == 'cone') {
         this.changeColorSvg(document.getElementById(event.target.id));
       }
       if (event.target.id == 'snow') {
         this.changeColorSvg(document.getElementById(event.target.id));
       }
-      
+
       if (event.target.id == 'star') {
         this.changeColorSvg(document.getElementById(event.target.id));
       }
       if (event.target.id == 'toy') {
         this.changeColorSvg(document.getElementById(event.target.id));
       }
-     
+      if (event.target.id == 'ball-big') {
+        this.changeColorSvg(document.getElementById(event.target.id));
+      }
+      if (event.target.id == 'ball-middle') {
+        this.changeColorSvg(document.getElementById(event.target.id));
+      }
+      if (event.target.id == 'ball-small') {
+        this.changeColorSvg(document.getElementById(event.target.id));
+      }
     });
     //this.checkboxRed = document.querySelector('.checkbox-red');
     this.buttonReset = document.querySelector('.button-reset');
@@ -43,7 +60,7 @@ export default class Search {
     this.showAll(data);
     this.countFavorites.innerHTML = this.searchFavorite(data).length;
     this.block = document.querySelectorAll('.block');
- 
+
     //this.categoryCheckBox.addEventListener('input', () => {
     //this.cleanMain();
     //this.showAll(data);
@@ -89,14 +106,14 @@ export default class Search {
     });
   }
   changeColorSvg(elemHTML) {
-  
-    elemHTML.getAttribute('fill')
+    elemHTML.getAttribute('fill');
     if (elemHTML.getAttribute('fill') == '#fff') {
-      elemHTML.setAttribute('fill', '#24C5DB')
+      elemHTML.setAttribute('fill', '#24C5DB');
+      return 1;
     } else if (elemHTML.getAttribute('fill') == '#24C5DB') {
-      elemHTML.setAttribute('fill', '#fff')
+      elemHTML.setAttribute('fill', '#fff');
+      return 0;
     }
-    
   }
   showAll(data) {
     for (let i = 0; i < data.length; i++) {
@@ -218,11 +235,24 @@ export default class Search {
     }
     return arrObj;
   }
-  searchForm(form, data) {
-    let res = data.filter((el) => {
-      return el.size === form;
-    });
-    return res;
+  searchForm(form, data, flag) {
+    if (flag) {
+      for (let i = 0; i < data.length; i++) {
+        debugger;
+        if (data[i].children[4].innerHTML.split(': ')[1] == form) {
+          data[i].classList.remove('hideBlock');
+        } else if (data[i].children[4].innerHTML.split(': ')[1] !== form) {
+          data[i].classList.add('hideBlock');
+        }
+      }
+    } else {
+      debugger;
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].children[4].innerHTML.split(': ')[1] !== form) {
+          data[i].classList.remove('hideBlock');
+        }
+      }
+    }
   }
   // searchCopy() {}
   // searchYear() {}
