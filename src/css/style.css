@@ -626,4 +626,18 @@ main * {
 .setting__block-copy {
   margin-bottom: 60px;
 }
+
+.favorite {
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 0px 5px;
+}
+
+.favorite:hover {
+  background: rgba(61, 201, 219, 0.5);
+}
+
+.favorite-active {
+  background: rgba(5, 192, 99, 0.5);
+}
 /*# sourceMappingURL=style.css.map */

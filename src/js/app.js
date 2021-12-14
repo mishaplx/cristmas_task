@@ -13,36 +13,55 @@ export default class App {
     this.search = document.querySelector('.inp_search');
     this.categoryCheckBox = document.getElementById('category');
     this.foreverCheckBox = document.getElementById('checkbox-forever');
+    this.favoriteBlock = document.querySelector('.favorite');
+    this.checkCount = 0;
 
     this.categoryCheckBox.addEventListener('input', () => {
       this.cleanMain();
       this.showAll(data);
       this.search.value = '';
     });
+    this.countForforeverCheckBox = 0;
     this.foreverCheckBox.addEventListener('input', () => {
-      let arrObj = this.getObj();
-      this.cleanMain();
-      let draw = this.searchFavorite(arrObj);
-      for (let i = 0; i < draw.length; i++) {
-        this.drawBlock(
-          draw[i].name,
-          draw[i].count,
-          draw[i].num,
-          draw[i].year,
-          draw[i].shape,
-          draw[i].color,
-          draw[i].size,
-          draw[i].favorite
-        );
+      if (this.foreverCheckBox.checked) {
+        let arrObjGlobal = this.getObj();
+        this.cleanMain();
+        let draw = this.searchFavorite(arrObjGlobal);
+        for (let i = 0; i < draw.length; i++) {
+          this.drawBlock(
+            draw[i].name,
+            draw[i].count,
+            draw[i].num,
+            draw[i].year,
+            draw[i].shape,
+            draw[i].color,
+            draw[i].size,
+            draw[i].favorite
+          );
+        }
+      } else if (!this.foreverCheckBox.checked) {
+        this.countForforeverCheckBox = 0;
+        this.cleanMain();
+        for (let i = 0; i < arrObj.length; i++) {
+          this.drawBlock(
+            arrObj[i].name,
+            arrObj[i].count,
+            arrObj[i].num,
+            arrObj[i].year,
+            arrObj[i].shape,
+            arrObj[i].color,
+            arrObj[i].size,
+            arrObj[i].favorite
+          );
+        }
       }
-     
     });
 
     this.search.addEventListener('input', () => {
       this.check(this.search.value);
-      console.log(this.getObj());
     });
   }
+
   start() {
     this.buttonStart.addEventListener('click', () => {
       this.buttonStart.classList.toggle('hide');
@@ -56,10 +75,6 @@ export default class App {
     });
   }
   showAll(data) {
-    //let x = data.filter((el)=>{
-    // return el.color === 'желтый'
-    //})
-    //console.log(x);
     for (let i = 0; i < data.length; i++) {
       this.drawBlock(
         data[i].name,
@@ -73,7 +88,6 @@ export default class App {
       );
     }
   }
-
   drawBlock(name, count, num, year, shape, color, size, favorite) {
     const block = document.createElement('div');
     block.className = 'block';
@@ -109,6 +123,7 @@ export default class App {
     favoriteBlock.className = 'favorite';
     if (favorite) {
       favoriteBlock.innerHTML = 'Да';
+      favoriteBlock.classList.toggle('favorite-active');
     } else {
       favoriteBlock.innerHTML = 'Нет';
     }
@@ -125,6 +140,7 @@ export default class App {
   }
   check(value) {
     this.cleanMain();
+    let countNoResult = 0;
     for (let i = 0; i < data.length; i++) {
       let name = data[i].name.toLocaleLowerCase();
       //debugger
@@ -139,6 +155,10 @@ export default class App {
           data[i].size,
           data[i].favorite
         );
+      }
+      if (name.indexOf(value) == -1) {
+        countNoResult++;
+        if (countNoResult >= 60) this.mainBlock.innerHTML = 'Извините, совпадений не обнаружено';
       }
     }
   }
@@ -169,7 +189,12 @@ export default class App {
   // searchForm() {}
   // searchCopy() {}
   // searchYear() {}
-  // searchColor() {}
+  searchColor(color) {
+    let res = data.filter((el) => {
+      return el.color === color;
+    });
+    return res;
+  }
   // searchSize() {}
   searchFavorite(data) {
     let res = data.filter((el) => {
