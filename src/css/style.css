@@ -4,12 +4,45 @@
   display: none;
 }
 
+.hideBlock {
+  -webkit-animation-name: hide;
+          animation-name: hide;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes hide {
+  to {
+    opacity: 0;
+    width: 0;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+  }
+}
+
+@keyframes hide {
+  to {
+    opacity: 0;
+    width: 0;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+  }
+}
+
 html {
   height: 100%;
 }
 
 p {
   margin: 0px;
+}
+
+.error {
+  display: none;
 }
 
 body {
@@ -260,39 +293,39 @@ body {
 }
 
 svg:hover #bell {
-  fill: #6d8115;
+  fill: silver;
 }
 
 svg:hover #ball {
-  fill: #6d8115;
+  fill: silver;
 }
 
 svg:hover #ball-big {
-  fill: #6d8115;
+  fill: silver;
 }
 
 svg:hover #ball-middle {
-  fill: #6d8115;
+  fill: silver;
 }
 
 svg:hover #ball-small {
-  fill: #6d8115;
+  fill: silver;
 }
 
 svg:hover #cone {
-  fill: #6d8115;
+  fill: silver;
 }
 
 svg:hover #snow {
-  fill: #6d8115;
+  fill: silver;
 }
 
 svg:hover #toy {
-  fill: #6d8115;
+  fill: silver;
 }
 
 svg:hover #star {
-  fill: #6d8115;
+  fill: silver;
 }
 
 .noUi-background {

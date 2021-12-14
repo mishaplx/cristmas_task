@@ -6,23 +6,35 @@ export default class Search {
     //this.categoryCheckBox = document.getElementById('category');
     this.foreverCheckBox = document.getElementById('checkbox-forever');
     this.countFavorites = document.querySelector('.count-favorites');
+    this.settingBlock = document.querySelector('.setting');
+    
+    this.settingBlock.addEventListener('click', (event) => {
+      console.log(event.target.id);
+      if (event.target.id == 'bell') {
+        this.changeColorSvg(document.getElementById(event.target.id));
+      }
+      if (event.target.id == 'ball') {
+        this.changeColorSvg(document.getElementById(event.target.id));
+      }
+      if (event.target.id == 'cone') {
+        this.changeColorSvg(document.getElementById(event.target.id));
+      }
+      if (event.target.id == 'snow') {
+        this.changeColorSvg(document.getElementById(event.target.id));
+      }
+      
+      if (event.target.id == 'star') {
+        this.changeColorSvg(document.getElementById(event.target.id));
+      }
+      if (event.target.id == 'toy') {
+        this.changeColorSvg(document.getElementById(event.target.id));
+      }
+     
+    });
     //this.checkboxRed = document.querySelector('.checkbox-red');
     this.buttonReset = document.querySelector('.button-reset');
     this.mainBlock = document.querySelector('.main');
     this.ballBig = document.getElementById('ball-big');
-    this.ballBigCount = 0;
-    this.ballBig.addEventListener('click', () => {
-      this.ballBigCount += 1;
-      if (this.ballBigCount == 1) {
-        this.ballBig.style.fill = 'red';
-        let draw = this.searchForm('большой', this.globalState)
-        this.showAll(draw);
-      }
-      else if (this.ballBigCount == 2){
-        this.ballBig.style.fill = 'white'
-        this.ballBigCount = 0
-      }
-    });
 
     this.buttonReset.addEventListener('click', () => {
       this.search.value = '';
@@ -30,7 +42,8 @@ export default class Search {
     });
     this.showAll(data);
     this.countFavorites.innerHTML = this.searchFavorite(data).length;
-
+    this.block = document.querySelectorAll('.block');
+ 
     //this.categoryCheckBox.addEventListener('input', () => {
     //this.cleanMain();
     //this.showAll(data);
@@ -40,9 +53,9 @@ export default class Search {
     this.foreverCheckBox.addEventListener('input', () => {
       if (this.foreverCheckBox.checked) {
         this.globalState = this.getObj();
-        console.log('this.globalState', this.globalState);
+
         let draw = this.searchFavorite(this.globalState);
-        this.cleanMain();
+
         for (let i = 0; i < draw.length; i++) {
           this.drawBlock(
             draw[i].name,
@@ -56,8 +69,6 @@ export default class Search {
           );
         }
       } else if (!this.foreverCheckBox.checked) {
-        console.log('this.globalState', this.globalState);
-        this.cleanMain();
         for (let i = 0; i < this.globalState.length; i++) {
           this.drawBlock(
             this.globalState[i].name,
@@ -77,8 +88,17 @@ export default class Search {
       this.check(this.search.value, this.globalState);
     });
   }
+  changeColorSvg(elemHTML) {
+  
+    elemHTML.getAttribute('fill')
+    if (elemHTML.getAttribute('fill') == '#fff') {
+      elemHTML.setAttribute('fill', '#24C5DB')
+    } else if (elemHTML.getAttribute('fill') == '#24C5DB') {
+      elemHTML.setAttribute('fill', '#fff')
+    }
+    
+  }
   showAll(data) {
-    this.cleanMain()
     for (let i = 0; i < data.length; i++) {
       this.drawBlock(
         data[i].name,
@@ -160,27 +180,20 @@ export default class Search {
   }
   check(value, state) {
     console.log('state', state);
-    this.cleanMain();
     let countNoResult = 0;
-    for (let i = 0; i < state.length; i++) {
-      let name = state[i].name.toLocaleLowerCase();
+    for (let i = 0; i < this.block.length; i++) {
+      let name = this.block[i].children[0].innerHTML.toLocaleLowerCase();
 
       if (name.indexOf(value) != -1) {
-        this.drawBlock(
-          state[i].name,
-          state[i].count,
-          state[i].num,
-          state[i].year,
-          state[i].shape,
-          state[i].color,
-          state[i].size,
-          state[i].favorite
-        );
+        this.block[i].classList.remove('hideBlock');
       }
       if (name.indexOf(value) == -1) {
+        this.block[i].classList.add('hideBlock');
         countNoResult++;
 
-        if (countNoResult >= 60) this.mainBlock.innerHTML = 'Извините, совпадений не обнаружено';
+        if (countNoResult >= 60) {
+          alert('Совпадений не обнаруженно');
+        }
       }
     }
   }
@@ -205,16 +218,12 @@ export default class Search {
     }
     return arrObj;
   }
-  cleanMain() {
-    this.mainBlock.innerHTML = '';
-  }
-   searchForm(form, data) {
-     console.log(data);
+  searchForm(form, data) {
     let res = data.filter((el) => {
       return el.size === form;
     });
     return res;
-   }
+  }
   // searchCopy() {}
   // searchYear() {}
   searchColor(color) {

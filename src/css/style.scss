@@ -3,11 +3,29 @@
 .hide {
   display: none;
 }
+.hideBlock {
+  animation-name: hide;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes hide {
+  to {
+    opacity: 0;
+    width: 0;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+   
+  }
+}
 html {
   height: 100%;
 }
 p {
   margin: 0px;
+}
+.error{
+  display: none;
 }
 body {
   color: white;
@@ -34,12 +52,12 @@ body {
     radial-gradient(57.23% 248.2% at 107.17% 104.02%, rgba(34, 153, 235, 0.92) 0%, rgba(34, 153, 235, 0.07) 100%),
     radial-gradient(104.22% 230.94% at -4.22% 0%, #24c5db 3.62%, rgba(36, 197, 219, 0.26) 55.1%);
 }
-.noUi-horizontal .noUi-handle::after{
+.noUi-horizontal .noUi-handle::after {
   display: none;
-} 
-.noUi-horizontal .noUi-handle::before{
+}
+.noUi-horizontal .noUi-handle::before {
   display: none;
-} 
+}
 #slider-for-copy,
 #slider-for-years {
   height: 5px;
@@ -177,31 +195,31 @@ body {
   }
 }
 svg:hover #bell {
-  fill: rgb(109, 129, 21);
+  fill: rgb(192, 192, 192);
 }
 svg:hover #ball {
-  fill: rgb(109, 129, 21);
+  fill: rgb(192, 192, 192);
 }
 svg:hover #ball-big {
-  fill: rgb(109, 129, 21);
+  fill: rgb(192, 192, 192);
 }
 svg:hover #ball-middle {
-  fill: rgb(109, 129, 21);
+  fill: rgb(192, 192, 192);
 }
 svg:hover #ball-small {
-  fill: rgb(109, 129, 21);
+  fill: rgb(192, 192, 192);
 }
 svg:hover #cone {
-  fill: rgb(109, 129, 21);
+  fill: rgb(192, 192, 192);
 }
 svg:hover #snow {
-  fill: rgb(109, 129, 21);
+  fill: rgb(192, 192, 192);
 }
 svg:hover #toy {
-  fill: rgb(109, 129, 21);
+  fill: rgb(192, 192, 192);
 }
 svg:hover #star {
-  fill: rgb(109, 129, 21);
+  fill: rgb(192, 192, 192);
 }
 .noUi-background {
   background-color: #000;
@@ -473,18 +491,18 @@ main * {
 .setting__block-copy {
   margin-bottom: 60px;
 }
-.favorite{
+.favorite {
   border: 1px solid #000;
   border-radius: 10px;
-padding: 0px 5px;
+  padding: 0px 5px;
 }
-.favorite:hover{
+.favorite:hover {
   background: rgba(61, 201, 219, 0.5);
 }
-.favorite-active{
+.favorite-active {
   background: rgba(5, 192, 99, 0.5);
 }
-.count-favorites{
+.count-favorites {
   width: 20px;
   height: 20px;
   border: 1px solid rgb(255, 255, 255);
