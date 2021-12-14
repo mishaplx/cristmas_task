@@ -11,8 +11,32 @@ export default class App {
     this.footerBlock = document.querySelector('.footer');
     this.mainBlock = document.querySelector('.main');
     this.search = document.querySelector('.inp_search');
+    this.categoryCheckBox = document.getElementById('category');
+    this.foreverCheckBox = document.getElementById('checkbox-forever');
 
-    // this.search.value = '';
+    this.categoryCheckBox.addEventListener('input', () => {
+      this.cleanMain();
+      this.showAll(data);
+      this.search.value = '';
+    });
+    this.foreverCheckBox.addEventListener('input', () => {
+      let arrObj = this.getObj();
+      this.cleanMain();
+      let draw = this.searchFavorite(arrObj);
+      for (let i = 0; i < draw.length; i++) {
+        this.drawBlock(
+          draw[i].name,
+          draw[i].count,
+          draw[i].num,
+          draw[i].year,
+          draw[i].shape,
+          draw[i].color,
+          draw[i].size,
+          draw[i].favorite
+        );
+      }
+     
+    });
 
     this.search.addEventListener('input', () => {
       this.check(this.search.value);
@@ -48,9 +72,8 @@ export default class App {
         data[i].favorite
       );
     }
-    
   }
-  
+
   drawBlock(name, count, num, year, shape, color, size, favorite) {
     const block = document.createElement('div');
     block.className = 'block';
@@ -99,7 +122,6 @@ export default class App {
     block.appendChild(favoriteBlock);
 
     this.mainBlock.appendChild(block);
-    
   }
   check(value) {
     this.cleanMain();
@@ -149,5 +171,10 @@ export default class App {
   // searchYear() {}
   // searchColor() {}
   // searchSize() {}
-  // searchFavorite(){ }
+  searchFavorite(data) {
+    let res = data.filter((el) => {
+      return el.favorite === true;
+    });
+    return res;
+  }
 }
