@@ -267,6 +267,18 @@ svg:hover #ball {
   fill: #6d8115;
 }
 
+svg:hover #ball-big {
+  fill: #6d8115;
+}
+
+svg:hover #ball-middle {
+  fill: #6d8115;
+}
+
+svg:hover #ball-small {
+  fill: #6d8115;
+}
+
 svg:hover #cone {
   fill: #6d8115;
 }

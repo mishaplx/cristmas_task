@@ -3,24 +3,39 @@ export default class Search {
     this.globalState = data;
     this.mainBlock = document.querySelector('.main');
     this.search = document.querySelector('.inp_search');
-    this.categoryCheckBox = document.getElementById('category');
+    //this.categoryCheckBox = document.getElementById('category');
     this.foreverCheckBox = document.getElementById('checkbox-forever');
     this.countFavorites = document.querySelector('.count-favorites');
     //this.checkboxRed = document.querySelector('.checkbox-red');
-    this.buttonReset = document.querySelector('.button-reset')
+    this.buttonReset = document.querySelector('.button-reset');
     this.mainBlock = document.querySelector('.main');
-    this.buttonReset.addEventListener('click', ()=>{
-      this.search.value = ''
-      this.foreverCheckBox.checked = false
-    })
+    this.ballBig = document.getElementById('ball-big');
+    this.ballBigCount = 0;
+    this.ballBig.addEventListener('click', () => {
+      this.ballBigCount += 1;
+      if (this.ballBigCount == 1) {
+        this.ballBig.style.fill = 'red';
+        let draw = this.searchForm('большой', this.globalState)
+        this.showAll(draw);
+      }
+      else if (this.ballBigCount == 2){
+        this.ballBig.style.fill = 'white'
+        this.ballBigCount = 0
+      }
+    });
+
+    this.buttonReset.addEventListener('click', () => {
+      this.search.value = '';
+      this.foreverCheckBox.checked = false;
+    });
     this.showAll(data);
     this.countFavorites.innerHTML = this.searchFavorite(data).length;
 
-    this.categoryCheckBox.addEventListener('input', () => {
-      this.cleanMain();
-      this.showAll(data);
-      this.search.value = '';
-    });
+    //this.categoryCheckBox.addEventListener('input', () => {
+    //this.cleanMain();
+    //this.showAll(data);
+    //this.search.value = '';
+    //});
 
     this.foreverCheckBox.addEventListener('input', () => {
       if (this.foreverCheckBox.checked) {
@@ -63,6 +78,7 @@ export default class Search {
     });
   }
   showAll(data) {
+    this.cleanMain()
     for (let i = 0; i < data.length; i++) {
       this.drawBlock(
         data[i].name,
@@ -110,26 +126,26 @@ export default class Search {
     const favoriteBlock = document.createElement('div');
     favoriteBlock.className = 'favorite';
     favoriteBlock.addEventListener('click', () => {
-      if (favoriteBlock.innerHTML == 'Нет') {
-        favoriteBlock.innerHTML = 'Да';
+      if (favoriteBlock.innerHTML.split(': ')[1] == 'Нет') {
+        favoriteBlock.innerHTML = 'Любимая: Да';
         this.countFavorites.innerHTML = Number(this.countFavorites.innerHTML) + 1;
         if (Number(this.countFavorites.innerHTML) > 20) {
           alert('больше 20-и игрушек нельзя добавлять в избранное');
-          favoriteBlock.innerHTML = 'Нет';
+          favoriteBlock.innerHTML = 'Любимая: Нет';
           this.countFavorites.innerHTML = Number(this.countFavorites.innerHTML) - 1;
           favoriteBlock.classList.toggle('favorite-active');
         }
-      } else if (favoriteBlock.innerHTML == 'Да') {
-        favoriteBlock.innerHTML = 'Нет';
+      } else if (favoriteBlock.innerHTML.split(': ')[1] == 'Да') {
+        favoriteBlock.innerHTML = 'Любимая: Нет';
         this.countFavorites.innerHTML = Number(this.countFavorites.innerHTML) - 1;
       }
       favoriteBlock.classList.toggle('favorite-active');
     });
     if (favorite) {
-      favoriteBlock.innerHTML = 'Да';
+      favoriteBlock.innerHTML = 'Любимая: Да';
       favoriteBlock.classList.toggle('favorite-active');
     } else {
-      favoriteBlock.innerHTML = 'Нет';
+      favoriteBlock.innerHTML = 'Любимая: Нет';
     }
     block.appendChild(nameBlock);
     block.appendChild(imgBlock);
@@ -192,7 +208,13 @@ export default class Search {
   cleanMain() {
     this.mainBlock.innerHTML = '';
   }
-  // searchForm() {}
+   searchForm(form, data) {
+     console.log(data);
+    let res = data.filter((el) => {
+      return el.size === form;
+    });
+    return res;
+   }
   // searchCopy() {}
   // searchYear() {}
   searchColor(color) {
