@@ -12,11 +12,11 @@ export default class App {
     this.mainBlock = document.querySelector('.main');
     this.search = document.querySelector('.inp_search');
 
-    this.search.value = '';
-    this.search.focus;
-    this.search.select;
+    // this.search.value = '';
+
     this.search.addEventListener('input', () => {
       this.check(this.search.value);
+      console.log(this.getObj());
     });
   }
   start() {
@@ -48,10 +48,9 @@ export default class App {
         data[i].favorite
       );
     }
+    
   }
-  cleanMain() {
-    this.mainBlock.innerHTML = '';
-  }
+  
   drawBlock(name, count, num, year, shape, color, size, favorite) {
     const block = document.createElement('div');
     block.className = 'block';
@@ -77,10 +76,11 @@ export default class App {
 
     const colorBlock = document.createElement('div');
     colorBlock.className = 'color';
-    colorBlock.innerHTML = `Цвет игрушки ${color}`;
+    colorBlock.innerHTML = `Цвет игрушки: ${color}`;
+
     const sizeBlock = document.createElement('div');
     sizeBlock.className = 'size';
-    sizeBlock.innerHTML = `Размер игрушки ${size}`;
+    sizeBlock.innerHTML = `Размер игрушки: ${size}`;
 
     const favoriteBlock = document.createElement('div');
     favoriteBlock.className = 'favorite';
@@ -95,9 +95,11 @@ export default class App {
     block.appendChild(yearBlock);
     block.appendChild(formBlock);
     block.appendChild(colorBlock);
+    block.appendChild(sizeBlock);
     block.appendChild(favoriteBlock);
 
     this.mainBlock.appendChild(block);
+    
   }
   check(value) {
     this.cleanMain();
@@ -118,7 +120,30 @@ export default class App {
       }
     }
   }
-
+  getObj() {
+    let arrObj = [];
+    let block = document.querySelectorAll('.block');
+    for (let i = 0; i < block.length; i++) {
+      const obj = new Object();
+      obj.name = block[i].children[0].innerHTML;
+      obj.num = block[i].children[1].src.match(/\d+/g)[5];
+      obj.count = block[i].children[2].innerHTML.match(/\d+/g)[0];
+      obj.year = block[i].children[3].innerHTML.match(/\d+/g)[0];
+      obj.shape = block[i].children[4].innerHTML.split(': ')[1];
+      obj.color = block[i].children[5].innerHTML.split(': ')[1];
+      obj.size = block[i].children[6].innerHTML.split(': ')[1];
+      if (block[i].children[7].innerHTML == 'Нет') {
+        obj.favorite = false;
+      } else {
+        obj.favorite = true;
+      }
+      arrObj.push(obj);
+    }
+    return arrObj;
+  }
+  cleanMain() {
+    this.mainBlock.innerHTML = '';
+  }
   // searchForm() {}
   // searchCopy() {}
   // searchYear() {}
