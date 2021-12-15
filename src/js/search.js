@@ -2,7 +2,7 @@ export default class Search {
   constructor(data) {
     this.globalState = data;
     this.mainBlock = document.querySelector('.main');
-    console.log(this.mainBlock.children);
+
     this.search = document.querySelector('.inp_search');
     //this.categoryCheckBox = document.getElementById('category');
     this.foreverCheckBox = document.getElementById('checkbox-forever');
@@ -26,26 +26,51 @@ export default class Search {
       }
 
       if (event.target.id == 'cone') {
-        this.changeColorSvg(document.getElementById(event.target.id));
+        if (this.changeColorSvg(document.getElementById(event.target.id))) {
+          this.searchForm('шишка', this.block, true);
+        } else {
+          this.searchForm('шишка', this.block, false);
+        }
       }
       if (event.target.id == 'snow') {
-        this.changeColorSvg(document.getElementById(event.target.id));
+        if (this.changeColorSvg(document.getElementById(event.target.id))) {
+          this.searchForm('снежинка', this.block, true);
+        } else {
+          this.searchForm('снежинка', this.block, false);
+        }
       }
 
-      if (event.target.id == 'star') {
-        this.changeColorSvg(document.getElementById(event.target.id));
-      }
       if (event.target.id == 'toy') {
-        this.changeColorSvg(document.getElementById(event.target.id));
+        if (this.changeColorSvg(document.getElementById(event.target.id))) {
+          this.searchForm('фигурка', this.block, true);
+        } else {
+          this.searchForm('фигурка', this.block, false);
+        }
       }
+
+
+
       if (event.target.id == 'ball-big') {
-        this.changeColorSvg(document.getElementById(event.target.id));
+        if (this.changeColorSvg(document.getElementById(event.target.id))) {
+          this.searchSize('большой', this.mainBlock.children, true);
+        } else {
+          this.searchSize('большой', this.mainBlock.children, false);
+        }
       }
       if (event.target.id == 'ball-middle') {
-        this.changeColorSvg(document.getElementById(event.target.id));
+        if (this.changeColorSvg(document.getElementById(event.target.id))) {
+          this.searchSize('средний', this.block, true);
+        } else {
+          this.searchSize('средний', this.mainBlock.children, false);
+        }
       }
       if (event.target.id == 'ball-small') {
-        this.changeColorSvg(document.getElementById(event.target.id));
+        
+        if (this.changeColorSvg(document.getElementById(event.target.id))) {
+          this.searchSize('малый', this.block, true);
+        } else {
+          this.searchSize('малый', this.mainBlock.children, false);
+        }
       }
     });
     //this.checkboxRed = document.querySelector('.checkbox-red');
@@ -238,7 +263,7 @@ export default class Search {
   searchForm(form, data, flag) {
     if (flag) {
       for (let i = 0; i < data.length; i++) {
-        debugger;
+        
         if (data[i].children[4].innerHTML.split(': ')[1] == form) {
           data[i].classList.remove('hideBlock');
         } else if (data[i].children[4].innerHTML.split(': ')[1] !== form) {
@@ -246,7 +271,7 @@ export default class Search {
         }
       }
     } else {
-      debugger;
+     
       for (let i = 0; i < data.length; i++) {
         if (data[i].children[4].innerHTML.split(': ')[1] !== form) {
           data[i].classList.remove('hideBlock');
@@ -262,7 +287,25 @@ export default class Search {
     });
     return res;
   }
-  // searchSize() {}
+   searchSize(form, data, flag) {
+    if (flag) {
+      for (let i = 0; i < data.length; i++) {
+       debugger
+        if (data[i].children[6].innerHTML.split(': ')[1] == form) {
+          data[i].classList.remove('hideBlock');
+        } else if (data[i].children[6].innerHTML.split(': ')[1] !== form) {
+          data[i].classList.add('hideBlock');
+        }
+      }
+    } else {
+      debugger
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].children[6].innerHTML.split(': ')[1] !== form) {
+          data[i].classList.remove('hideBlock');
+        }
+      }
+    }
+   }
   searchFavorite(data) {
     let res = data.filter((el) => {
       return el.favorite === true;
