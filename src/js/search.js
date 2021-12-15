@@ -2,13 +2,12 @@ export default class Search {
   constructor(data) {
     this.globalState = data;
     this.mainBlock = document.querySelector('.main');
-
     this.search = document.querySelector('.inp_search');
     //this.categoryCheckBox = document.getElementById('category');
     this.foreverCheckBox = document.getElementById('checkbox-forever');
     this.countFavorites = document.querySelector('.count-favorites');
     this.settingBlock = document.querySelector('.setting');
-    
+
     this.settingBlock.addEventListener('click', (event) => {
       if (event.target.id == 'bell') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
@@ -50,29 +49,29 @@ export default class Search {
 
       if (event.target.id == 'ball-big') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize2('большой', this.mainBlock.children, true);
+          this.searchSize('большой', this.mainBlock.children, true);
         } else {
-          this.searchSize2('большой', this.mainBlock.children, false);
+          this.searchSize('большой', this.mainBlock.children, false);
         }
       }
       if (event.target.id == 'ball-middle') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize2('средний', this.mainBlock.children, true);
+          this.searchSize('средний', this.mainBlock.children, true);
         } else {
-          this.searchSize2('средний', this.mainBlock.children, false);
+          this.searchSize('средний', this.mainBlock.children, false);
         }
       }
       if (event.target.id == 'ball-small') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize2('малый', this.mainBlock.children, true);
+          this.searchSize('малый', this.mainBlock.children, true);
         } else {
-          this.searchSize2('малый', this.mainBlock.children, false);
+          this.searchSize('малый', this.mainBlock.children, false);
         }
       }
     });
     //this.checkboxRed = document.querySelector('.checkbox-red');
     this.buttonReset = document.querySelector('.button-reset');
-    
+
     this.ballBig = document.getElementById('ball-big');
 
     this.buttonReset.addEventListener('click', () => {
@@ -83,11 +82,6 @@ export default class Search {
     this.countFavorites.innerHTML = this.searchFavorite(data).length;
     this.block = document.querySelectorAll('.block');
 
-    //this.categoryCheckBox.addEventListener('input', () => {
-    //this.cleanMain();
-    //this.showAll(data);
-    //this.search.value = '';
-    //});
 
     this.foreverCheckBox.addEventListener('input', () => {
       if (this.foreverCheckBox.checked) {
@@ -282,68 +276,33 @@ export default class Search {
     });
     return res;
   }
+
   searchSize(form, data, flag) {
+    const dataHide = document.querySelectorAll('.block.hideBlock');
     if (flag) {
-      for (let i = 0; i < data.length; i++) {
-       
-        if (data[i].children[6].innerHTML.split(': ')[1] == form) {
-          data[i].classList.remove('hideBlock');
-        } else if (data[i].children[6].innerHTML.split(': ')[1] !== form) {
-          data[i].classList.toggle('hideBlock');
+      for (const key of data) {
+        
+        if (dataHide.length == 0) {
+          if (key.children[6].innerHTML.split(': ')[1] !== form && key.className !== 'block hideBlock') {
+            key.classList.add('hideBlock');
+          }
+        }
+      }
+      if (dataHide.length !== 0) {
+        for (const iterator of dataHide) {
+          if (iterator.children[6].innerHTML.split(': ')[1] == form) {
+            iterator.classList.remove('hideBlock');
+          }
         }
       }
     } else {
-      
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].children[6].innerHTML.split(': ')[1] !== form) {
-          data[i].classList.remove('hideBlock');
-        }
-      }
-    }
-  }
-
-
-
-
-
-
-
-  searchSize2(form, data, flag) {
-   console.log(data); 
-    if(flag) {
-     for (const key of data) {
-      //debugger
-       if(key.children[6].innerHTML.split(': ')[1] == form && (key.className !== 'block hideBlock')){
-        key.classList.remove('hideBlock')
-       }
-       if(key.children[6].innerHTML.split(': ')[1] !== form && (key.className !== 'block hideBlock')){
-        key.classList.add('hideBlock')
-       }
-       
-     }
-    }
-    else{
-      
       for (const key of data) {
-        console.log(key.className);
-        if(key.children[6].innerHTML.split(': ')[1] !== form && (key.className == 'block hideBlock')){
-         key.classList.remove('hideBlock')
+        if (key.children[6].innerHTML.split(': ')[1] == form) {
+          key.classList.add('hideBlock');
         }
-        
       }
     }
   }
-
-
-
-
-
-
-
-
-
-
-
 
   searchFavorite(data) {
     let res = data.filter((el) => {
