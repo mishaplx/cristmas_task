@@ -8,7 +8,7 @@ export default class Search {
     this.foreverCheckBox = document.getElementById('checkbox-forever');
     this.countFavorites = document.querySelector('.count-favorites');
     this.settingBlock = document.querySelector('.setting');
-
+    
     this.settingBlock.addEventListener('click', (event) => {
       if (event.target.id == 'bell') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
@@ -48,34 +48,31 @@ export default class Search {
         }
       }
 
-
-
       if (event.target.id == 'ball-big') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('большой', this.mainBlock.children, true);
+          this.searchSize2('большой', this.mainBlock.children, true);
         } else {
-          this.searchSize('большой', this.mainBlock.children, false);
+          this.searchSize2('большой', this.mainBlock.children, false);
         }
       }
       if (event.target.id == 'ball-middle') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('средний', this.block, true);
+          this.searchSize2('средний', this.mainBlock.children, true);
         } else {
-          this.searchSize('средний', this.mainBlock.children, false);
+          this.searchSize2('средний', this.mainBlock.children, false);
         }
       }
       if (event.target.id == 'ball-small') {
-        
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('малый', this.block, true);
+          this.searchSize2('малый', this.mainBlock.children, true);
         } else {
-          this.searchSize('малый', this.mainBlock.children, false);
+          this.searchSize2('малый', this.mainBlock.children, false);
         }
       }
     });
     //this.checkboxRed = document.querySelector('.checkbox-red');
     this.buttonReset = document.querySelector('.button-reset');
-    this.mainBlock = document.querySelector('.main');
+    
     this.ballBig = document.getElementById('ball-big');
 
     this.buttonReset.addEventListener('click', () => {
@@ -263,7 +260,6 @@ export default class Search {
   searchForm(form, data, flag) {
     if (flag) {
       for (let i = 0; i < data.length; i++) {
-        
         if (data[i].children[4].innerHTML.split(': ')[1] == form) {
           data[i].classList.remove('hideBlock');
         } else if (data[i].children[4].innerHTML.split(': ')[1] !== form) {
@@ -271,7 +267,6 @@ export default class Search {
         }
       }
     } else {
-     
       for (let i = 0; i < data.length; i++) {
         if (data[i].children[4].innerHTML.split(': ')[1] !== form) {
           data[i].classList.remove('hideBlock');
@@ -287,25 +282,69 @@ export default class Search {
     });
     return res;
   }
-   searchSize(form, data, flag) {
+  searchSize(form, data, flag) {
     if (flag) {
       for (let i = 0; i < data.length; i++) {
-       debugger
+       
         if (data[i].children[6].innerHTML.split(': ')[1] == form) {
           data[i].classList.remove('hideBlock');
         } else if (data[i].children[6].innerHTML.split(': ')[1] !== form) {
-          data[i].classList.add('hideBlock');
+          data[i].classList.toggle('hideBlock');
         }
       }
     } else {
-      debugger
+      
       for (let i = 0; i < data.length; i++) {
         if (data[i].children[6].innerHTML.split(': ')[1] !== form) {
           data[i].classList.remove('hideBlock');
         }
       }
     }
-   }
+  }
+
+
+
+
+
+
+
+  searchSize2(form, data, flag) {
+   console.log(data); 
+    if(flag) {
+     for (const key of data) {
+      //debugger
+       if(key.children[6].innerHTML.split(': ')[1] == form && (key.className !== 'block hideBlock')){
+        key.classList.remove('hideBlock')
+       }
+       if(key.children[6].innerHTML.split(': ')[1] !== form && (key.className !== 'block hideBlock')){
+        key.classList.add('hideBlock')
+       }
+       
+     }
+    }
+    else{
+      
+      for (const key of data) {
+        console.log(key.className);
+        if(key.children[6].innerHTML.split(': ')[1] !== form && (key.className == 'block hideBlock')){
+         key.classList.remove('hideBlock')
+        }
+        
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
   searchFavorite(data) {
     let res = data.filter((el) => {
       return el.favorite === true;
