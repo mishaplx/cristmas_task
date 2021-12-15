@@ -19,8 +19,7 @@ export default function slider() {
   }
     
   });
-  
-  
+ 
   const slider1 = document.getElementById('slider-for-years');
 
   noUiSlider.create(slider1, {

@@ -7,66 +7,72 @@ export default class Search {
     this.foreverCheckBox = document.getElementById('checkbox-forever');
     this.countFavorites = document.querySelector('.count-favorites');
     this.settingBlock = document.querySelector('.setting');
-
+    this.tegPath = document.getElementsByTagName('path');
+    this.slider = document.querySelector('.noUi-target.noUi-ltr.noUi-horizontal');
+    this.allInput = document.getElementsByTagName('input');
+    console.log(this.slider);
     this.settingBlock.addEventListener('click', (event) => {
       if (event.target.id == 'bell') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchForm('колокольчик', this.mainBlock.children, true);
+          this.searchSize('колокольчик', this.mainBlock.children, 4, true);
         } else {
-          this.searchForm('колокольчик', this.mainBlock.children, false);
+          this.searchSize('колокольчик', this.mainBlock.children, 4, false);
         }
       }
       if (event.target.id == 'ball') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchForm('шар', this.block, true);
+          this.searchSize('шар', this.block, 4, true);
         } else {
-          this.searchForm('шар', this.block, false);
+          this.searchSize('шар', this.block, 4, false);
         }
       }
 
       if (event.target.id == 'cone') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchForm('шишка', this.block, true);
+          this.searchSize('шишка', this.block, 4, true);
         } else {
-          this.searchForm('шишка', this.block, false);
+          this.searchSize('шишка', this.block, 4, false);
         }
       }
       if (event.target.id == 'snow') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchForm('снежинка', this.block, true);
+          this.searchSize('снежинка', this.block, 4, true);
         } else {
-          this.searchForm('снежинка', this.block, false);
+          this.searchSize('снежинка', this.block, 4, false);
         }
       }
 
       if (event.target.id == 'toy') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchForm('фигурка', this.block, true);
+          this.searchSize('фигурка', this.block, 4, true);
         } else {
-          this.searchForm('фигурка', this.block, false);
+          this.searchSize('фигурка', this.block, 4, false);
         }
       }
 
       if (event.target.id == 'ball-big') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('большой', this.mainBlock.children, true);
+          this.searchSize('большой', this.mainBlock.children, 6, true);
         } else {
-          this.searchSize('большой', this.mainBlock.children, false);
+          this.searchSize('большой', this.mainBlock.children, 6, false);
         }
       }
       if (event.target.id == 'ball-middle') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('средний', this.mainBlock.children, true);
+          this.searchSize('средний', this.mainBlock.children, 6, true);
         } else {
-          this.searchSize('средний', this.mainBlock.children, false);
+          this.searchSize('средний', this.mainBlock.children, 6, false);
         }
       }
       if (event.target.id == 'ball-small') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('малый', this.mainBlock.children, true);
+          this.searchSize('малый', this.mainBlock.children, 6, true);
         } else {
-          this.searchSize('малый', this.mainBlock.children, false);
+          this.searchSize('малый', this.mainBlock.children, 6, false);
         }
+      }
+      if (event.target.id == 'reset') {
+        this.reset();
       }
     });
     //this.checkboxRed = document.querySelector('.checkbox-red');
@@ -74,14 +80,9 @@ export default class Search {
 
     this.ballBig = document.getElementById('ball-big');
 
-    this.buttonReset.addEventListener('click', () => {
-      this.search.value = '';
-      this.foreverCheckBox.checked = false;
-    });
     this.showAll(data);
     this.countFavorites.innerHTML = this.searchFavorite(data).length;
     this.block = document.querySelectorAll('.block');
-
 
     this.foreverCheckBox.addEventListener('input', () => {
       if (this.foreverCheckBox.checked) {
@@ -121,7 +122,26 @@ export default class Search {
       this.check(this.search.value, this.globalState);
     });
   }
+  reset() {
+    this.search.value = '';
+    this.foreverCheckBox.checked = false;
+    for (const iterator of this.tegPath) {
+      iterator.setAttribute('fill', '#fff');
+    }
+    document.getElementById('slider-for-copy').noUiSlider.reset();
+    document.getElementById('slider-for-years').noUiSlider.reset();
+
+    for (const iterator of this.allInput) {
+      if (iterator.getAttribute('type') == 'checkbox') {
+        iterator.checked = false;
+      }
+    }
+    for (const iterator of this.mainBlock.children) {
+      iterator.classList.remove("hideBlock")
+    }
+  }
   changeColorSvg(elemHTML) {
+    
     elemHTML.getAttribute('fill');
     if (elemHTML.getAttribute('fill') == '#fff') {
       elemHTML.setAttribute('fill', '#24C5DB');
@@ -211,8 +231,7 @@ export default class Search {
 
     this.mainBlock.appendChild(block);
   }
-  check(value, state) {
-    console.log('state', state);
+  check(value) {
     let countNoResult = 0;
     for (let i = 0; i < this.block.length; i++) {
       let name = this.block[i].children[0].innerHTML.toLocaleLowerCase();
@@ -251,25 +270,7 @@ export default class Search {
     }
     return arrObj;
   }
-  searchForm(form, data, flag) {
-    if (flag) {
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].children[4].innerHTML.split(': ')[1] == form) {
-          data[i].classList.remove('hideBlock');
-        } else if (data[i].children[4].innerHTML.split(': ')[1] !== form) {
-          data[i].classList.add('hideBlock');
-        }
-      }
-    } else {
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].children[4].innerHTML.split(': ')[1] !== form) {
-          data[i].classList.remove('hideBlock');
-        }
-      }
-    }
-  }
-  // searchCopy() {}
-  // searchYear() {}
+
   searchColor(color) {
     let res = data.filter((el) => {
       return el.color === color;
@@ -277,27 +278,26 @@ export default class Search {
     return res;
   }
 
-  searchSize(form, data, flag) {
+  searchSize(form, data, itemChildren, flag) {
     const dataHide = document.querySelectorAll('.block.hideBlock');
     if (flag) {
       for (const key of data) {
-        
         if (dataHide.length == 0) {
-          if (key.children[6].innerHTML.split(': ')[1] !== form && key.className !== 'block hideBlock') {
+          if (key.children[itemChildren].innerHTML.split(': ')[1] !== form && key.className !== 'block hideBlock') {
             key.classList.add('hideBlock');
           }
         }
       }
       if (dataHide.length !== 0) {
         for (const iterator of dataHide) {
-          if (iterator.children[6].innerHTML.split(': ')[1] == form) {
+          if (iterator.children[itemChildren].innerHTML.split(': ')[1] == form) {
             iterator.classList.remove('hideBlock');
           }
         }
       }
     } else {
       for (const key of data) {
-        if (key.children[6].innerHTML.split(': ')[1] == form) {
+        if (key.children[itemChildren].innerHTML.split(': ')[1] == form) {
           key.classList.add('hideBlock');
         }
       }
