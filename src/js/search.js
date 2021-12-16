@@ -18,61 +18,61 @@ export default class Search {
     this.settingBlock.addEventListener('click', (event) => {
       if (event.target.id == 'bell') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('колокольчик', this.mainBlock.children, 4, true);
+          this.searchFun('колокольчик', this.mainBlock.children, 4, true);
         } else {
-          this.searchSize('колокольчик', this.mainBlock.children, 4, false);
+          this.searchFun('колокольчик', this.mainBlock.children, 4, false);
         }
       }
       if (event.target.id == 'ball') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('шар', this.block, 4, true);
+          this.searchFun('шар', this.block, 4, true);
         } else {
-          this.searchSize('шар', this.block, 4, false);
+          this.searchFun('шар', this.block, 4, false);
         }
       }
 
       if (event.target.id == 'cone') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('шишка', this.block, 4, true);
+          this.searchFun('шишка', this.block, 4, true);
         } else {
-          this.searchSize('шишка', this.block, 4, false);
+          this.searchFun('шишка', this.block, 4, false);
         }
       }
       if (event.target.id == 'snow') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('снежинка', this.block, 4, true);
+          this.searchFun('снежинка', this.block, 4, true);
         } else {
-          this.searchSize('снежинка', this.block, 4, false);
+          this.searchFun('снежинка', this.block, 4, false);
         }
       }
 
       if (event.target.id == 'toy') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('фигурка', this.block, 4, true);
+          this.searchFun('фигурка', this.block, 4, true);
         } else {
-          this.searchSize('фигурка', this.block, 4, false);
+          this.searchFun('фигурка', this.block, 4, false);
         }
       }
 
       if (event.target.id == 'ball-big') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('большой', this.mainBlock.children, 6, true);
+          this.searchFun('большой', this.mainBlock.children, 6, true);
         } else {
-          this.searchSize('большой', this.mainBlock.children, 6, false);
+          this.searchFun('большой', this.mainBlock.children, 6, false);
         }
       }
       if (event.target.id == 'ball-middle') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('средний', this.mainBlock.children, 6, true);
+          this.searchFun('средний', this.mainBlock.children, 6, true);
         } else {
-          this.searchSize('средний', this.mainBlock.children, 6, false);
+          this.searchFun('средний', this.mainBlock.children, 6, false);
         }
       }
       if (event.target.id == 'ball-small') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
-          this.searchSize('малый', this.mainBlock.children, 6, true);
+          this.searchFun('малый', this.mainBlock.children, 6, true);
         } else {
-          this.searchSize('малый', this.mainBlock.children, 6, false);
+          this.searchFun('малый', this.mainBlock.children, 6, false);
         }
       }
       if (event.target.id == 'reset') {
@@ -82,57 +82,68 @@ export default class Search {
     this.settingBlock.addEventListener('input', (event) => {
       if (event.target.id == 'checkbox-white') {
         if (event.target.checked) {
-          this.searchSize('белый', this.mainBlock.children, 5, true);
+          this.searchFun('белый', this.mainBlock.children, 5, true);
         } else {
-          this.searchSize('белый', this.mainBlock.children, 5, false);
+          this.searchFun('белый', this.mainBlock.children, 5, false);
         }
       }
       if (event.target.id == 'checkbox-yellow') {
         if (event.target.checked) {
-          this.searchSize('желтый', this.mainBlock.children, 5, true);
+          this.searchFun('желтый', this.mainBlock.children, 5, true);
         } else {
-          this.searchSize('желтый', this.mainBlock.children, 5, false);
+          this.searchFun('желтый', this.mainBlock.children, 5, false);
         }
       }
       if (event.target.id == 'checkbox-red') {
         if (event.target.checked) {
-          this.searchSize('красный', this.mainBlock.children, 5, true);
+          this.searchFun('красный', this.mainBlock.children, 5, true);
         } else {
-          this.searchSize('красный', this.mainBlock.children, 5, false);
+          this.searchFun('красный', this.mainBlock.children, 5, false);
         }
       }
       if (event.target.id == 'checkbox-blue') {
         if (event.target.checked) {
-          this.searchSize('синий', this.mainBlock.children, 5, true);
+          this.searchFun('синий', this.mainBlock.children, 5, true);
         } else {
-          this.searchSize('синий', this.mainBlock.children, 5, false);
+          this.searchFun('синий', this.mainBlock.children, 5, false);
         }
       }
       if (event.target.id == 'checkbox-green') {
         if (event.target.checked) {
-          this.searchSize('зелёный', this.mainBlock.children, 5, true);
+          this.searchFun('зелёный', this.mainBlock.children, 5, true);
         } else {
-          this.searchSize('зелёный', this.mainBlock.children, 5, false);
+          this.searchFun('зелёный', this.mainBlock.children, 5, false);
         }
       }
-      if (event.target.id == 'checkbox-forever') {
-        if (event.target.checked) {
-          
-          
-          this.searchSize('Да', this.mainBlock.children, 7, true);
-        } else {
-          this.searchSize('Нет', this.mainBlock.children, 7, false);
-        }
-      }
-    
     });
-    
-    this.showAll(data);
-   
-    
-    this.search.addEventListener('input', () => {
+    this.sliderForCopy.noUiSlider.on('change', () => {
+      this.searchSlider(this.sliderForCopy.noUiSlider.get(), this.mainBlock.children,2);
+    });
+    this.sliderForYears.noUiSlider.on('change', () => {
+      this.searchSlider(this.sliderForYears.noUiSlider.get(), this.mainBlock.children,3);
+    });
+
+    this.search.addEventListener('change', () => {
       this.check(this.search.value, this.globalState);
     });
+    this.showAll(data);
+  }
+  searchSlider(arrValue, data,itemChildren) {
+    
+    let firstValue = arrValue[0];
+    let lastValue = arrValue[1];
+    const dataHide = document.querySelectorAll('.block.hideBlock');
+    
+    for (const key of data) {
+      let count = Number(key.children[itemChildren].innerHTML.match(/\d+/g)[0]);
+
+      if (count >= firstValue && count <= lastValue) {
+        key.classList.remove('hideBlock');
+      } else {
+        key.classList.add('hideBlock');
+      }
+    }
+    console.log();
   }
   reset() {
     this.search.value = '';
@@ -281,7 +292,7 @@ export default class Search {
     }
     return arrObj;
   }
-  searchSize(form, data, itemChildren, flag) {
+  searchFun(form, data, itemChildren, flag) {
     const dataHide = document.querySelectorAll('.block.hideBlock');
     if (flag) {
       for (const key of data) {

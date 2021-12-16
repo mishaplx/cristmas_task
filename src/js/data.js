@@ -3,7 +3,7 @@ const data= [
   {
     num: '2',
     name: 'Зелёный шар с цветами',
-    count: '5',
+    count: '2',
     year: '2000',
     shape: 'шар',
     color: 'зелёный',
