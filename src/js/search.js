@@ -1,6 +1,7 @@
 export default class Search {
   constructor(data) {
     this.globalState = data;
+    this.block = document.querySelectorAll('.block');
     this.mainBlock = document.querySelector('.main');
     this.search = document.querySelector('.inp_search');
     this.sliderForCopy = document.getElementById('slider-for-copy');
@@ -11,6 +12,9 @@ export default class Search {
     this.tegPath = document.getElementsByTagName('path');
     this.slider = document.querySelector('.noUi-target.noUi-ltr.noUi-horizontal');
     this.allInput = document.getElementsByTagName('input');
+    this.buttonReset = document.querySelector('.button-reset');
+    this.ballBig = document.getElementById('ball-big');
+    this.countFavorites.innerHTML = this.searchFavorite(data).length;
     this.settingBlock.addEventListener('click', (event) => {
       if (event.target.id == 'bell') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
@@ -111,49 +115,21 @@ export default class Search {
           this.searchSize('зелёный', this.mainBlock.children, 5, false);
         }
       }
-    });
-    this.buttonReset = document.querySelector('.button-reset');
-
-    this.ballBig = document.getElementById('ball-big');
-
-    this.showAll(data);
-    this.countFavorites.innerHTML = this.searchFavorite(data).length;
-    this.block = document.querySelectorAll('.block');
-
-    this.foreverCheckBox.addEventListener('input', () => {
-      if (this.foreverCheckBox.checked) {
-        this.globalState = this.getObj();
-
-        let draw = this.searchFavorite(this.globalState);
-
-        for (let i = 0; i < draw.length; i++) {
-          this.drawBlock(
-            draw[i].name,
-            draw[i].count,
-            draw[i].num,
-            draw[i].year,
-            draw[i].shape,
-            draw[i].color,
-            draw[i].size,
-            draw[i].favorite
-          );
-        }
-      } else if (!this.foreverCheckBox.checked) {
-        for (let i = 0; i < this.globalState.length; i++) {
-          this.drawBlock(
-            this.globalState[i].name,
-            this.globalState[i].count,
-            this.globalState[i].num,
-            this.globalState[i].year,
-            this.globalState[i].shape,
-            this.globalState[i].color,
-            this.globalState[i].size,
-            this.globalState[i].favorite
-          );
+      if (event.target.id == 'checkbox-forever') {
+        if (event.target.checked) {
+          
+          
+          this.searchSize('Да', this.mainBlock.children, 7, true);
+        } else {
+          this.searchSize('Нет', this.mainBlock.children, 7, false);
         }
       }
+    
     });
-
+    
+    this.showAll(data);
+   
+    
     this.search.addEventListener('input', () => {
       this.check(this.search.value, this.globalState);
     });
@@ -305,14 +281,6 @@ export default class Search {
     }
     return arrObj;
   }
-
-  searchColor(color) {
-    let res = data.filter((el) => {
-      return el.color === color;
-    });
-    return res;
-  }
-
   searchSize(form, data, itemChildren, flag) {
     const dataHide = document.querySelectorAll('.block.hideBlock');
     if (flag) {
@@ -338,7 +306,6 @@ export default class Search {
       }
     }
   }
-
   searchFavorite(data) {
     let res = data.filter((el) => {
       return el.favorite === true;
