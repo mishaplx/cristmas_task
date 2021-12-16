@@ -3,14 +3,14 @@ export default class Search {
     this.globalState = data;
     this.mainBlock = document.querySelector('.main');
     this.search = document.querySelector('.inp_search');
-    //this.categoryCheckBox = document.getElementById('category');
+    this.sliderForCopy = document.getElementById('slider-for-copy');
+    this.sliderForYears = document.getElementById('slider-for-years');
     this.foreverCheckBox = document.getElementById('checkbox-forever');
     this.countFavorites = document.querySelector('.count-favorites');
     this.settingBlock = document.querySelector('.setting');
     this.tegPath = document.getElementsByTagName('path');
     this.slider = document.querySelector('.noUi-target.noUi-ltr.noUi-horizontal');
     this.allInput = document.getElementsByTagName('input');
-    console.log(this.slider);
     this.settingBlock.addEventListener('click', (event) => {
       if (event.target.id == 'bell') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
@@ -75,7 +75,43 @@ export default class Search {
         this.reset();
       }
     });
-    //this.checkboxRed = document.querySelector('.checkbox-red');
+    this.settingBlock.addEventListener('input', (event) => {
+      if (event.target.id == 'checkbox-white') {
+        if (event.target.checked) {
+          this.searchSize('белый', this.mainBlock.children, 5, true);
+        } else {
+          this.searchSize('белый', this.mainBlock.children, 5, false);
+        }
+      }
+      if (event.target.id == 'checkbox-yellow') {
+        if (event.target.checked) {
+          this.searchSize('желтый', this.mainBlock.children, 5, true);
+        } else {
+          this.searchSize('желтый', this.mainBlock.children, 5, false);
+        }
+      }
+      if (event.target.id == 'checkbox-red') {
+        if (event.target.checked) {
+          this.searchSize('красный', this.mainBlock.children, 5, true);
+        } else {
+          this.searchSize('красный', this.mainBlock.children, 5, false);
+        }
+      }
+      if (event.target.id == 'checkbox-blue') {
+        if (event.target.checked) {
+          this.searchSize('синий', this.mainBlock.children, 5, true);
+        } else {
+          this.searchSize('синий', this.mainBlock.children, 5, false);
+        }
+      }
+      if (event.target.id == 'checkbox-green') {
+        if (event.target.checked) {
+          this.searchSize('зелёный', this.mainBlock.children, 5, true);
+        } else {
+          this.searchSize('зелёный', this.mainBlock.children, 5, false);
+        }
+      }
+    });
     this.buttonReset = document.querySelector('.button-reset');
 
     this.ballBig = document.getElementById('ball-big');
@@ -128,8 +164,8 @@ export default class Search {
     for (const iterator of this.tegPath) {
       iterator.setAttribute('fill', '#fff');
     }
-    document.getElementById('slider-for-copy').noUiSlider.reset();
-    document.getElementById('slider-for-years').noUiSlider.reset();
+    this.sliderForCopy.noUiSlider.reset();
+    this.sliderForYears.noUiSlider.reset();
 
     for (const iterator of this.allInput) {
       if (iterator.getAttribute('type') == 'checkbox') {
@@ -137,11 +173,10 @@ export default class Search {
       }
     }
     for (const iterator of this.mainBlock.children) {
-      iterator.classList.remove("hideBlock")
+      iterator.classList.remove('hideBlock');
     }
   }
   changeColorSvg(elemHTML) {
-    
     elemHTML.getAttribute('fill');
     if (elemHTML.getAttribute('fill') == '#fff') {
       elemHTML.setAttribute('fill', '#24C5DB');

@@ -1,6 +1,25 @@
 //import { Idata } from '../interfaces/interfaces';
 const data= [
-
+  {
+    num: '2',
+    name: 'Зелёный шар с цветами',
+    count: '5',
+    year: '2000',
+    shape: 'шар',
+    color: 'зелёный',
+    size: 'большой',
+    favorite: false,
+  },
+  {
+    num: '13',
+    name: 'Шар расписной Река',
+    count: '3',
+    year: '1970',
+    shape: 'шар',
+    color: 'синий',
+    size: 'большой',
+    favorite: true,
+  },
   {
     num: '47',
     name: 'Фигурка Колодец',
@@ -72,6 +91,7 @@ const data= [
     size: 'средний',
     favorite: true,
   },
+
 ];
 
 export default data;

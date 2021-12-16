@@ -680,6 +680,7 @@ main * {
   border: 1px solid #000;
   border-radius: 10px;
   padding: 0px 5px;
+  cursor: pointer;
 }
 
 .favorite:hover {
