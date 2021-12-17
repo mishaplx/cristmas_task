@@ -2,7 +2,6 @@ export default class Search {
   constructor(data) {
     this.globalState = data;
     this.block = document.querySelectorAll('.block');
-    
 
     this.mainBlock = document.querySelector('.main');
     this.search = document.querySelector('.inp_search');
@@ -130,7 +129,6 @@ export default class Search {
     });
     this.sliderForCopy.noUiSlider.on('change', (event) => {
       this.searchSlider(this.sliderForCopy.noUiSlider.get(), this.mainBlock.children, 2);
-      //  if(event.target.id == )
     });
     this.sliderForYears.noUiSlider.on('change', () => {
       this.searchSlider(this.sliderForYears.noUiSlider.get(), this.mainBlock.children, 3);
@@ -140,20 +138,107 @@ export default class Search {
       this.check(this.search.value);
     });
     this.showAll(data);
-    //this.blockForSort = document.querySelectorAll('.block');
+
     this.select.addEventListener('change', () => {
+      if (this.select.value == 'less_alphabet_more') {
+        this.sortalfabet(this.mainBlock.children, 0, true);
+      }
+      if (this.select.value == 'more_alphabet_less') {
+        this.sortalfabet(this.mainBlock.children, 0, false);
+      }
       if (this.select.value == 'less_years_more') {
-        this.sort(this.mainBlock.children);
+        this.sortCount(this.mainBlock.children, 2, true);
+      }
+      if (this.select.value == 'more_years_less') {
+        this.sortCount(this.mainBlock.children, 2, false);
       }
     });
   }
-  sort(data) {
-    for (const item of data) {
-     
-        console.log(item);
+  sortalfabet(data, itemChildren, marks) {
+    let switching;
+    let shouldSwitch;
+    let i;
+
+    switching = true;
+    //debugger
+    while (switching) {
       
+      switching = false;
+
+      for (i = 0; i < data.length; i++) {
+        shouldSwitch = false;
+        if(marks){
+          if (
+            data[i].children[itemChildren].innerHTML.toLowerCase()[0] >
+            data[i + 1].children[itemChildren].innerHTML.toLowerCase()[0] 
+          ) {
+            
+            shouldSwitch = true;
+            break;
+          }
+        }
+        else{
+          if (
+            data[i].children[itemChildren].innerHTML.toLowerCase()[0] <
+            data[i + 1].children[itemChildren].innerHTML.toLowerCase()[0] 
+          ) {
+            
+            shouldSwitch = true;
+            break;
+          }
+        }
+        
+      }
+      if (shouldSwitch) {
+        
+          data[i].parentNode.insertBefore(data[i + 1], data[i]);
+        switching = true;
+      }
     }
   }
+  sortCount(data, itemChildren, marks) {
+    let switching;
+    let shouldSwitch;
+    let i;
+
+    switching = true;
+    //debugger
+    while (switching) {
+      
+      switching = false;
+
+      for (i = 0; i < data.length; i++) {
+        shouldSwitch = false;
+        if(marks){
+          if (
+            Number(data[i].children[itemChildren].innerHTML.match(/\d+/g)[0])  >
+            Number(data[i+1].children[itemChildren].innerHTML.match(/\d+/g)[0])
+          ) {
+            
+            shouldSwitch = true;
+            break;
+          }
+        }
+        else{
+          if (
+            Number(data[i].children[itemChildren].innerHTML.match(/\d+/g)[0])  <
+            Number(data[i+1].children[itemChildren].innerHTML.match(/\d+/g)[0])
+          ) {
+            
+            shouldSwitch = true;
+            break;
+          }
+        }
+        
+      }
+      if (shouldSwitch) {
+        
+          data[i].parentNode.insertBefore(data[i + 1], data[i]);
+        switching = true;
+      }
+    }
+  }
+  
   searchSlider(arrValue, data, itemChildren) {
     let firstValue = arrValue[0];
     let lastValue = arrValue[1];
@@ -167,7 +252,6 @@ export default class Search {
         key.classList.add('hideBlock');
       }
     }
-    
   }
   reset() {
     this.search.value = '';
@@ -278,8 +362,7 @@ export default class Search {
     this.mainBlock.appendChild(block);
   }
   check(value) {
-    //console.log(this.block);
-    //debugger
+   
     let countNoResult = 0;
     for (const i of this.mainBlock.children) {
       let name = i.children[0].innerHTML.toLocaleLowerCase();
