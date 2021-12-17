@@ -1,13 +1,12 @@
 export default class Search {
   constructor(data) {
-  
     this.globalState = data;
     this.block = document.querySelectorAll('.block');
-    console.log(this.block);
     
+
     this.mainBlock = document.querySelector('.main');
     this.search = document.querySelector('.inp_search');
-    this.search.focus()
+    this.search.focus();
     this.select = document.getElementById('select');
     this.sliderForCopy = document.getElementById('slider-for-copy');
     this.sliderForYears = document.getElementById('slider-for-years');
@@ -130,39 +129,35 @@ export default class Search {
       }
     });
     this.sliderForCopy.noUiSlider.on('change', (event) => {
-      this.searchSlider(this.sliderForCopy.noUiSlider.get(), this.mainBlock.children,2);
-    //  if(event.target.id == )
+      this.searchSlider(this.sliderForCopy.noUiSlider.get(), this.mainBlock.children, 2);
+      //  if(event.target.id == )
     });
     this.sliderForYears.noUiSlider.on('change', () => {
-      this.searchSlider(this.sliderForYears.noUiSlider.get(), this.mainBlock.children,3);
+      this.searchSlider(this.sliderForYears.noUiSlider.get(), this.mainBlock.children, 3);
     });
 
     this.search.addEventListener('input', () => {
-      
       this.check(this.search.value);
     });
     this.showAll(data);
-    this.blockForSort = document.querySelectorAll('.block');
+    //this.blockForSort = document.querySelectorAll('.block');
     this.select.addEventListener('change', () => {
-      if(this.select.value == 'less_years_more'){
-        this.sort(this.blockForSort)
-        
+      if (this.select.value == 'less_years_more') {
+        this.sort(this.mainBlock.children);
       }
-    })
-  
+    });
   }
-  sort(data){
-    debugger
+  sort(data) {
     for (const item of data) {
-      console.log(item);
+     
+        console.log(item);
+      
     }
   }
-  searchSlider(arrValue, data,itemChildren) {
-    
+  searchSlider(arrValue, data, itemChildren) {
     let firstValue = arrValue[0];
     let lastValue = arrValue[1];
-    
-    
+
     for (const key of data) {
       let count = Number(key.children[itemChildren].innerHTML.match(/\d+/g)[0]);
 
@@ -172,7 +167,7 @@ export default class Search {
         key.classList.add('hideBlock');
       }
     }
-    console.log();
+    
   }
   reset() {
     this.search.value = '';
@@ -287,7 +282,6 @@ export default class Search {
     //debugger
     let countNoResult = 0;
     for (const i of this.mainBlock.children) {
-      
       let name = i.children[0].innerHTML.toLocaleLowerCase();
 
       if (name.indexOf(value) != -1) {
