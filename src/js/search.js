@@ -1,15 +1,21 @@
 export default class Search {
   constructor(data) {
+  
     this.globalState = data;
     this.block = document.querySelectorAll('.block');
+    console.log(this.block);
+    
     this.mainBlock = document.querySelector('.main');
     this.search = document.querySelector('.inp_search');
+    this.search.focus()
+    this.select = document.getElementById('select');
     this.sliderForCopy = document.getElementById('slider-for-copy');
     this.sliderForYears = document.getElementById('slider-for-years');
     this.foreverCheckBox = document.getElementById('checkbox-forever');
     this.countFavorites = document.querySelector('.count-favorites');
     this.settingBlock = document.querySelector('.setting');
     this.tegPath = document.getElementsByTagName('path');
+    const dataBlockAndHide = document.querySelectorAll('.block.hideBlock');
     this.slider = document.querySelector('.noUi-target.noUi-ltr.noUi-horizontal');
     this.allInput = document.getElementsByTagName('input');
     this.buttonReset = document.querySelector('.button-reset');
@@ -115,24 +121,47 @@ export default class Search {
           this.searchFun('зелёный', this.mainBlock.children, 5, false);
         }
       }
+      if (event.target.id == 'checkbox-forever') {
+        if (event.target.checked) {
+          this.searchFun('Да', this.mainBlock.children, 7, true);
+        } else {
+          this.searchFun('Нет', this.mainBlock.children, 7, false);
+        }
+      }
     });
-    this.sliderForCopy.noUiSlider.on('change', () => {
+    this.sliderForCopy.noUiSlider.on('change', (event) => {
       this.searchSlider(this.sliderForCopy.noUiSlider.get(), this.mainBlock.children,2);
+    //  if(event.target.id == )
     });
     this.sliderForYears.noUiSlider.on('change', () => {
       this.searchSlider(this.sliderForYears.noUiSlider.get(), this.mainBlock.children,3);
     });
 
-    this.search.addEventListener('change', () => {
-      this.check(this.search.value, this.globalState);
+    this.search.addEventListener('input', () => {
+      
+      this.check(this.search.value);
     });
     this.showAll(data);
+    this.blockForSort = document.querySelectorAll('.block');
+    this.select.addEventListener('change', () => {
+      if(this.select.value == 'less_years_more'){
+        this.sort(this.blockForSort)
+        
+      }
+    })
+  
+  }
+  sort(data){
+    debugger
+    for (const item of data) {
+      console.log(item);
+    }
   }
   searchSlider(arrValue, data,itemChildren) {
     
     let firstValue = arrValue[0];
     let lastValue = arrValue[1];
-    const dataHide = document.querySelectorAll('.block.hideBlock');
+    
     
     for (const key of data) {
       let count = Number(key.children[itemChildren].innerHTML.match(/\d+/g)[0]);
@@ -254,18 +283,21 @@ export default class Search {
     this.mainBlock.appendChild(block);
   }
   check(value) {
+    //console.log(this.block);
+    //debugger
     let countNoResult = 0;
-    for (let i = 0; i < this.block.length; i++) {
-      let name = this.block[i].children[0].innerHTML.toLocaleLowerCase();
+    for (const i of this.mainBlock.children) {
+      
+      let name = i.children[0].innerHTML.toLocaleLowerCase();
 
       if (name.indexOf(value) != -1) {
-        this.block[i].classList.remove('hideBlock');
+        i.classList.remove('hideBlock');
       }
       if (name.indexOf(value) == -1) {
-        this.block[i].classList.add('hideBlock');
+        i.classList.add('hideBlock');
         countNoResult++;
 
-        if (countNoResult >= 60) {
+        if (countNoResult >= this.globalState.length) {
           alert('Совпадений не обнаруженно');
         }
       }

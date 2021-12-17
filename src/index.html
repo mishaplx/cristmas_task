@@ -20,24 +20,19 @@
           <div class="setting__block-search">
             <img src="./assets/svg/mute.svg" alt="mute" width="40px" height="40px" />
             <img src="./assets/svg/snow.svg" alt="snow" width="40px" height="40px" />
-            <input type="search" class="inp_search" placeholder="ПОИСК" />
+            <input type="search" class="inp_search" placeholder="ПОИСК" autofocus />
             <div class="count-favorites"></div>
           </div>
           <div class="setting-block-sorting">
             <div class="title_sorting">Сортировать:</div>
-            <select name="select">
-              <!--Supplement an id here instead of using 'name'-->
+            <select name="select" id='select'>
+              <option value="value0"> </option>
               <option value="value1">по названию в возрастающем порядке</option>
-              <option value="value2" selected>по названию в спадающем порядке</option>
-              <option value="value3">по году их приобретения в возрастающемпорядке</option>
+              <option value="value2">по названию в спадающем порядке</option>
+              <option value="less_years_more">по году их приобретения в возрастающем порядке</option>
               <option value="value3">по году их приобретения в спадающем порядке</option>
             </select>
           </div>
-         <!-- <div class="setting-block-category">
-            <div class="title_category">Категории:</div>
-            <input type="checkbox" name="category" id="category" />
-            <span class="all">Все</span>
-          </div> -->
           <div class="setting__block">
             <p class="title">ФИЛЬТР ПО НАЗНАЧЕНИЮ</p>
             <div class="setting__block-forma">

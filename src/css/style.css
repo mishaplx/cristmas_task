@@ -359,7 +359,6 @@ svg:hover #star {
   width: 30px;
   height: 30px;
   background: #dadada;
-  border: 1px solid white;
   border-radius: 5px;
   text-align: center;
 }
@@ -374,7 +373,6 @@ svg:hover #star {
           flex-grow: 0;
   width: 30px;
   height: 30px;
-  border: 1px solid #adb5bd;
   border-radius: 0.25em;
   margin-right: 0.5em;
   background-repeat: no-repeat;
@@ -404,7 +402,6 @@ svg:hover #star {
   width: 30px;
   height: 30px;
   background: #c4d10b;
-  border: 1px solid white;
   border-radius: 5px;
   text-align: center;
 }
@@ -419,7 +416,6 @@ svg:hover #star {
           flex-grow: 0;
   width: 30px;
   height: 30px;
-  border: 1px solid #adb5bd;
   border-radius: 0.25em;
   margin-right: 0.5em;
   background-repeat: no-repeat;
@@ -440,7 +436,6 @@ svg:hover #star {
   width: 30px;
   height: 30px;
   background: #d10b0b;
-  border: 1px solid white;
   border-radius: 5px;
   text-align: center;
 }
@@ -455,7 +450,6 @@ svg:hover #star {
           flex-grow: 0;
   width: 30px;
   height: 30px;
-  border: 1px solid #adb5bd;
   border-radius: 0.25em;
   margin-right: 0.5em;
   background-repeat: no-repeat;
@@ -476,7 +470,6 @@ svg:hover #star {
   width: 30px;
   height: 30px;
   background: #0b18d1;
-  border: 1px solid white;
   border-radius: 5px;
   text-align: center;
 }
@@ -491,7 +484,6 @@ svg:hover #star {
           flex-grow: 0;
   width: 30px;
   height: 30px;
-  border: 1px solid #adb5bd;
   border-radius: 0.25em;
   margin-right: 0.5em;
   background-repeat: no-repeat;
@@ -527,7 +519,6 @@ svg:hover #star {
           flex-grow: 0;
   width: 30px;
   height: 30px;
-  border: 1px solid #adb5bd;
   border-radius: 0.25em;
   margin-right: 0.5em;
   background-repeat: no-repeat;
@@ -558,7 +549,6 @@ svg:hover #star {
   width: 30px;
   height: 30px;
   background: #0b18d1;
-  border: 1px solid white;
   border-radius: 5px;
   text-align: center;
 }
@@ -573,7 +563,6 @@ svg:hover #star {
           flex-grow: 0;
   width: 30px;
   height: 30px;
-  border: 1px solid #adb5bd;
   border-radius: 0.25em;
   margin-right: 0.5em;
   background-repeat: no-repeat;
@@ -609,7 +598,6 @@ svg:hover #star {
           flex-grow: 0;
   width: 30px;
   height: 30px;
-  border: 1px solid #adb5bd;
   border-radius: 0.25em;
   margin-right: 0.5em;
   background-repeat: no-repeat;
