@@ -1,4 +1,5 @@
-const data= [
+import { Idata } from "../interfaces/interfaces";
+const data: Idata[] = [
   {
     num: '1',
     name: 'Большой шар с рисунком',

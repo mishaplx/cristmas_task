@@ -1,5 +1,23 @@
-export default class Search {
-  constructor(data) {
+import { Idata } from "../interfaces/interfaces";
+import { ISortData } from "../interfaces/interfaces";
+import { Iobj } from "../interfaces/interfaces";
+export default class Card {
+  globalState: Idata[];
+  block: NodeListOf<Element>;
+  mainBlock: any;
+  search: any;
+  select: any;
+  sliderForCopy: any;
+  sliderForYears: any;
+  foreverCheckBox: any;
+  countFavorites: any;
+  settingBlock: any;
+  tegPath: HTMLCollectionOf<SVGPathElement>;
+  slider: HTMLElement;
+  allInput: HTMLCollectionOf<HTMLInputElement>;
+  buttonReset: any;
+  ballBig: HTMLElement;
+  constructor(data: Idata[]) {
     this.globalState = data;
     this.block = document.querySelectorAll('.block');
 
@@ -19,7 +37,7 @@ export default class Search {
     this.buttonReset = document.querySelector('.button-reset');
     this.ballBig = document.getElementById('ball-big');
     this.countFavorites.innerHTML = this.searchFavorite(data).length;
-    this.settingBlock.addEventListener('click', (event) => {
+    this.settingBlock.addEventListener('click', (event: { target: { id: string; }; }) => {
       if (event.target.id == 'bell') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
           this.searchFun('колокольчик', this.mainBlock.children, 4, true);
@@ -83,7 +101,7 @@ export default class Search {
         this.reset();
       }
     });
-    this.settingBlock.addEventListener('input', (event) => {
+    this.settingBlock.addEventListener('input', (event: { target: { id: string; checked: boolean; }; }) => {
       if (event.target.id == 'checkbox-white') {
         if (event.target.checked) {
           this.searchFun('белый', this.mainBlock.children, 5, true);
@@ -127,7 +145,7 @@ export default class Search {
         }
       }
     });
-    this.sliderForCopy.noUiSlider.on('change', (event) => {
+    this.sliderForCopy.noUiSlider.on('change', () => {
       this.searchSlider(this.sliderForCopy.noUiSlider.get(), this.mainBlock.children, 2);
     });
     this.sliderForYears.noUiSlider.on('change', () => {
@@ -154,7 +172,7 @@ export default class Search {
       }
     });
   }
-  sortalfabet(data, itemChildren, marks) {
+  sortalfabet(data: any, itemChildren: number, marks: boolean) {
     let switching;
     let shouldSwitch;
     let i;
@@ -196,7 +214,7 @@ export default class Search {
       }
     }
   }
-  sortCount(data, itemChildren, marks) {
+  sortCount(data: any, itemChildren: number, marks: boolean): void {
     let switching;
     let shouldSwitch;
     let i;
@@ -239,12 +257,12 @@ export default class Search {
     }
   }
   
-  searchSlider(arrValue, data, itemChildren) {
-    let firstValue = arrValue[0];
-    let lastValue = arrValue[1];
+  searchSlider(arrValue: number[], data: HTMLCollection, itemChildren: number): void {
+    let firstValue: number = arrValue[0];
+    let lastValue: number = arrValue[1];
 
     for (const key of data) {
-      let count = Number(key.children[itemChildren].innerHTML.match(/\d+/g)[0]);
+      let count: number = Number(key.children[itemChildren].innerHTML.match(/\d+/g)[0]);
 
       if (count >= firstValue && count <= lastValue) {
         key.classList.remove('hideBlock');
@@ -253,7 +271,7 @@ export default class Search {
       }
     }
   }
-  reset() {
+  reset(): void {
     this.search.value = '';
     this.foreverCheckBox.checked = false;
     for (const iterator of this.tegPath) {
@@ -271,7 +289,7 @@ export default class Search {
       iterator.classList.remove('hideBlock');
     }
   }
-  changeColorSvg(elemHTML) {
+  changeColorSvg(elemHTML: HTMLElement): number {
     elemHTML.getAttribute('fill');
     if (elemHTML.getAttribute('fill') == '#fff') {
       elemHTML.setAttribute('fill', '#24C5DB');
@@ -281,7 +299,7 @@ export default class Search {
       return 0;
     }
   }
-  showAll(data) {
+  showAll(data: Idata[]): void {
     for (let i = 0; i < data.length; i++) {
       this.drawBlock(
         data[i].name,
@@ -295,7 +313,7 @@ export default class Search {
       );
     }
   }
-  drawBlock(name, count, num, year, shape, color, size, favorite) {
+  drawBlock(name: string, count: string, num: string, year: string, shape: string, color: string, size: string, favorite: boolean): void {
     const block = document.createElement('div');
     block.className = 'block';
 
@@ -361,7 +379,7 @@ export default class Search {
 
     this.mainBlock.appendChild(block);
   }
-  check(value) {
+  check(value: string): void {
    
     let countNoResult = 0;
     for (const i of this.mainBlock.children) {
@@ -380,11 +398,11 @@ export default class Search {
       }
     }
   }
-  getObj() {
+  getObj(): object[] {
     let arrObj = [];
-    let block = document.querySelectorAll('.block');
+    let block: any = document.querySelectorAll('.block');
     for (let i = 0; i < block.length; i++) {
-      const obj = new Object();
+      const obj: any = new Object();
       obj.name = block[i].children[0].innerHTML;
       obj.num = block[i].children[1].src.match(/\d+/g)[5];
       obj.count = block[i].children[2].innerHTML.match(/\d+/g)[0];
@@ -401,7 +419,7 @@ export default class Search {
     }
     return arrObj;
   }
-  searchFun(form, data, itemChildren, flag) {
+  searchFun(form:string, data: any, itemChildren: any, flag: boolean): void {
     const dataHide = document.querySelectorAll('.block.hideBlock');
     if (flag) {
       for (const key of data) {
@@ -426,7 +444,7 @@ export default class Search {
       }
     }
   }
-  searchFavorite(data) {
+  searchFavorite(data: Idata[]): boolean | any {
     let res = data.filter((el) => {
       return el.favorite === true;
     });
