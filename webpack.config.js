@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlagin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: 'development',
@@ -16,27 +16,19 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    static: path.resolve(__dirname, './src'),
+    static: path.resolve(__dirname, './dist'),
     open: true,
     compress: true,
     hot: true,
     port: 8080,
-  },
+},
   module: {
     rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
       {
         test: /\.s[ac]ss$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-      {
-        test: /\.(png|jpg|svg)$/,
-        use: ['file-loader'],
-      },
+     
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         type: 'asset/resource',
@@ -45,15 +37,24 @@ module.exports = {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         type: 'asset/inline',
       },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
   },
 
   plugins: [
     new HtmlWebpackPlagin({
-      title: 'webpack Boilerplate',
-      template: './index.html',
+      template: path.resolve(__dirname, './src/index.html'),
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, './src/assets'), to:  path.resolve(__dirname, './dist/assets')},
+        
+      ],
+    }),
   ],
 };

@@ -1,6 +1,5 @@
-import { Idata } from "../interfaces/interfaces";
-import { ISortData } from "../interfaces/interfaces";
-import { Iobj } from "../interfaces/interfaces";
+import { Idata } from '../interfaces/interfaces';
+
 export default class Card {
   globalState: Idata[];
   block: NodeListOf<Element>;
@@ -37,7 +36,7 @@ export default class Card {
     this.buttonReset = document.querySelector('.button-reset');
     this.ballBig = document.getElementById('ball-big');
     this.countFavorites.innerHTML = this.searchFavorite(data).length;
-    this.settingBlock.addEventListener('click', (event: { target: { id: string; }; }) => {
+    this.settingBlock.addEventListener('click', (event: { target: { id: string } }) => {
       if (event.target.id == 'bell') {
         if (this.changeColorSvg(document.getElementById(event.target.id))) {
           this.searchFun('колокольчик', this.mainBlock.children, 4, true);
@@ -101,7 +100,7 @@ export default class Card {
         this.reset();
       }
     });
-    this.settingBlock.addEventListener('input', (event: { target: { id: string; checked: boolean; }; }) => {
+    this.settingBlock.addEventListener('input', (event: { target: { id: string; checked: boolean } }) => {
       if (event.target.id == 'checkbox-white') {
         if (event.target.checked) {
           this.searchFun('белый', this.mainBlock.children, 5, true);
@@ -180,36 +179,30 @@ export default class Card {
     switching = true;
     //debugger
     while (switching) {
-      
       switching = false;
 
       for (i = 0; i < data.length; i++) {
         shouldSwitch = false;
-        if(marks){
+        if (marks) {
           if (
             data[i].children[itemChildren].innerHTML.toLowerCase()[0] >
-            data[i + 1].children[itemChildren].innerHTML.toLowerCase()[0] 
+            data[i + 1].children[itemChildren].innerHTML.toLowerCase()[0]
           ) {
-            
             shouldSwitch = true;
             break;
           }
-        }
-        else{
+        } else {
           if (
             data[i].children[itemChildren].innerHTML.toLowerCase()[0] <
-            data[i + 1].children[itemChildren].innerHTML.toLowerCase()[0] 
+            data[i + 1].children[itemChildren].innerHTML.toLowerCase()[0]
           ) {
-            
             shouldSwitch = true;
             break;
           }
         }
-        
       }
       if (shouldSwitch) {
-        
-          data[i].parentNode.insertBefore(data[i + 1], data[i]);
+        data[i].parentNode.insertBefore(data[i + 1], data[i]);
         switching = true;
       }
     }
@@ -222,41 +215,35 @@ export default class Card {
     switching = true;
     //debugger
     while (switching) {
-      
       switching = false;
 
       for (i = 0; i < data.length; i++) {
         shouldSwitch = false;
-        if(marks){
+        if (marks) {
           if (
-            Number(data[i].children[itemChildren].innerHTML.match(/\d+/g)[0])  >
-            Number(data[i+1].children[itemChildren].innerHTML.match(/\d+/g)[0])
+            Number(data[i].children[itemChildren].innerHTML.match(/\d+/g)[0]) >
+            Number(data[i + 1].children[itemChildren].innerHTML.match(/\d+/g)[0])
           ) {
-            
+            shouldSwitch = true;
+            break;
+          }
+        } else {
+          if (
+            Number(data[i].children[itemChildren].innerHTML.match(/\d+/g)[0]) <
+            Number(data[i + 1].children[itemChildren].innerHTML.match(/\d+/g)[0])
+          ) {
             shouldSwitch = true;
             break;
           }
         }
-        else{
-          if (
-            Number(data[i].children[itemChildren].innerHTML.match(/\d+/g)[0])  <
-            Number(data[i+1].children[itemChildren].innerHTML.match(/\d+/g)[0])
-          ) {
-            
-            shouldSwitch = true;
-            break;
-          }
-        }
-        
       }
       if (shouldSwitch) {
-        
-          data[i].parentNode.insertBefore(data[i + 1], data[i]);
+        data[i].parentNode.insertBefore(data[i + 1], data[i]);
         switching = true;
       }
     }
   }
-  
+
   searchSlider(arrValue: number[], data: HTMLCollection, itemChildren: number): void {
     let firstValue: number = arrValue[0];
     let lastValue: number = arrValue[1];
@@ -313,7 +300,16 @@ export default class Card {
       );
     }
   }
-  drawBlock(name: string, count: string, num: string, year: string, shape: string, color: string, size: string, favorite: boolean): void {
+  drawBlock(
+    name: string,
+    count: string,
+    num: string,
+    year: string,
+    shape: string,
+    color: string,
+    size: string,
+    favorite: boolean
+  ): void {
     const block = document.createElement('div');
     block.className = 'block';
 
@@ -380,7 +376,6 @@ export default class Card {
     this.mainBlock.appendChild(block);
   }
   check(value: string): void {
-   
     let countNoResult = 0;
     for (const i of this.mainBlock.children) {
       let name = i.children[0].innerHTML.toLocaleLowerCase();
@@ -419,7 +414,7 @@ export default class Card {
     }
     return arrObj;
   }
-  searchFun(form:string, data: any, itemChildren: any, flag: boolean): void {
+  searchFun(form: string, data: any, itemChildren: any, flag: boolean): void {
     const dataHide = document.querySelectorAll('.block.hideBlock');
     if (flag) {
       for (const key of data) {

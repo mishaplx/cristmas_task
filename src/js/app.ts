@@ -1,6 +1,6 @@
 import data from './data';
 import Card from './card';
-import { Idata } from "../interfaces/interfaces"
+import { Idata } from '../interfaces/interfaces';
 
 export default class App {
   globalState: Idata[];
